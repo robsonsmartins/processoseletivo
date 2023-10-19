@@ -69,7 +69,7 @@
 			client_cardinality 	(value cardinality "0..0"))
 		    (object Uses_Relationship
 			quid       	"3C9551A901BC"
-			supplier   	"Use Case View::TConfAvaliacao"
+			supplier   	"Use Case View::TExameConfiguracao"
 			quidu      	"3C9298B801E0"
 			supplier_cardinality 	(value cardinality "1..1")
 			client_cardinality 	(value cardinality "1..1"))
@@ -90,7 +90,7 @@
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0)
-		    (object Operation "ArmazenarProva"
+		    (object Operation "FinalizarProva"
 			quid       	"3C92909600FA"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
@@ -295,7 +295,7 @@
 		    (object ClassAttribute "Titulo"
 			quid       	"3C92963A015E"
 			exportControl 	"Public")))
-	    (object Class "TConfAvaliacao"
+	    (object Class "TExameConfiguracao"
 		quid       	"3C9298B801E0"
 		used_nodes 	(list uses_relationship_list
 		    (object Uses_Relationship
@@ -305,13 +305,18 @@
 			supplier_cardinality 	(value cardinality "1..n")
 			client_cardinality 	(value cardinality "1..1")))
 		operations 	(list Operations
-		    (object Operation "getConfiguracao"
+		    (object Operation "getExameConfiguracao"
 			quid       	"3C9BC13901EA"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0)
-		    (object Operation "setConfiguracao"
+		    (object Operation "setExameConfiguracao"
 			quid       	"3C9BC14302F8"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "setNovoExame"
+			quid       	"3CDDF5AD00B5"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
@@ -346,11 +351,6 @@
 			uid        	0)
 		    (object Operation "ConsultaCandidato"
 			quid       	"3C9BC1B0019A"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ListaData"
-			quid       	"3C9BC1CE0230"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
@@ -516,6 +516,267 @@
 			quid       	"3CAE4EE00032"
 			type       	"TProva"
 			exportControl 	"Public")))
+	    (object Class "TClienteProva"
+		quid       	"3CDDEF45002A"
+		stereotype 	"control"
+		operations 	(list Operations
+		    (object Operation "escolher_prova"
+			quid       	"3CDDEF6C0257"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "iniciar"
+			quid       	"3CDDEF750391"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "finalizar"
+			quid       	"3CDDEF7D03CE"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "gravar_xml"
+			quid       	"3CDDEF95026A"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "carregar_xml"
+			quid       	"3CDDEF9C013E"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "efetuar_login"
+			quid       	"3CDDEFAF0163"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "carregar_questao"
+			quid       	"3CDDF75A02C4"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "responder_questao"
+			quid       	"3CDDF772017E"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TLogin"
+		quid       	"3CDDEFDF0266"
+		operations 	(list Operations
+		    (object Operation "efetuar_login"
+			quid       	"3CDDEFFE02A7"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "usr"
+			quid       	"3CDDEFE90397"
+			exportControl 	"Public")
+		    (object ClassAttribute "pwd"
+			quid       	"3CDDEFEC0392"
+			exportControl 	"Public")))
+	    (object Class "TConexao"
+		quid       	"3CDDF0090271"
+		operations 	(list Operations
+		    (object Operation "open"
+			quid       	"3CDDF01D0338"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "execute"
+			quid       	"3CDDF02200F0"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "SQL"
+			quid       	"3CDDF01501A6"
+			exportControl 	"Public")))
+	    (object Class "TCadastros"
+		quid       	"3CDDF0480308"
+		operations 	(list Operations
+		    (object Operation "set_usuarios"
+			quid       	"3CDDF05801DE"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "set_disciplina"
+			quid       	"3CDDF05F038D"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "set_area"
+			quid       	"3CDDF06801CD"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "set_recursos"
+			quid       	"3CDDF06D01F3"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TCadastro_Questoes"
+		quid       	"3CDDF08201D5"
+		operations 	(list Operations
+		    (object Operation "seleciona_disciplina"
+			quid       	"3CDDF0940022"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "traz_questao"
+			quid       	"3CDDF09C016E"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "atualiza_questao"
+			quid       	"3CDDF0AE037D"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "nova_questao"
+			quid       	"3CDDF0CD0287"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "apaga_questao"
+			quid       	"3CDDF0D3011D"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TConf_Questao"
+		quid       	"3CDDF0E00126"
+		operations 	(list Operations
+		    (object Operation "editar"
+			quid       	"3CDDF0EA00A8"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "incluir"
+			quid       	"3CDDF0F503BB"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "apagar"
+			quid       	"3CDDF0FA00B5"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TRelatorios"
+		quid       	"3CDDF10801EB"
+		operations 	(list Operations
+		    (object Operation "prepara_filtros"
+			quid       	"3CDDF1160029"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "exec_pesquisa"
+			quid       	"3CDDF11D0001"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TAgendaCandidato"
+		quid       	"3CDDF12F030A"
+		operations 	(list Operations
+		    (object Operation "set_candidato"
+			quid       	"3CDDF13A005D"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "agenda_candidato"
+			quid       	"3CDDF14103D8"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "TAcesso"
+		quid       	"3CDDF2F50321"
+		operations 	(list Operations
+		    (object Operation "Open"
+			quid       	"3CDDF30B01A6"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Execute"
+			quid       	"3CDDF3120001"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "SQL"
+			quid       	"3CDDF2FE02E8"
+			exportControl 	"Public")))
+	    (object Class "TLoginCandidato"
+		quid       	"3CDDF392036D"
+		operations 	(list Operations
+		    (object Operation "efetua_login"
+			quid       	"3CDDF3CA00E2"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "get_info_candidato"
+			quid       	"3CDDF3D00203"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Inscricao"
+			quid       	"3CDDF39B01A3"
+			exportControl 	"Public")
+		    (object ClassAttribute "rg"
+			quid       	"3CDDF3AF02D8"
+			exportControl 	"Public")))
+	    (object Class "TQuestaoProva"
+		quid       	"3CDDF3EF00EF"
+		operations 	(list Operations
+		    (object Operation "get_Questao"
+			quid       	"3CDDF40902EC"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "set_Questao"
+			quid       	"3CDDF411030B"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "cod_questao"
+			quid       	"3CDDF3FD0140"
+			exportControl 	"Public")))
+	    (object Class "TLoginUsuario"
+		quid       	"3CDDF4390204"
+		operations 	(list Operations
+		    (object Operation "efetua_login"
+			quid       	"3CDDF45D021A"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "usuario"
+			quid       	"3CDDF4480011"
+			exportControl 	"Public")
+		    (object ClassAttribute "senha"
+			quid       	"3CDDF44B0391"
+			exportControl 	"Public")))
+	    (object Class "NewClass"
+		quid       	"3CDDF46E00B6")
+	    (object Class "TC"
+		quid       	"3CDDF48003A1")
+	    (object Class "TCandidato"
+		quid       	"3CDDF4B90262"
+		operations 	(list Operations
+		    (object Operation "set_candidato"
+			quid       	"3CDDF4D2000F"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "get_candidato"
+			quid       	"3CDDF4DF0068"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "dados_candidato"
+			quid       	"3CDDF4C3013A"
+			exportControl 	"Public")))
 	    (object UseCase "Cadastrar Professores"
 		quid       	"3C86D5120097")
 	    (object UseCase "Cadastrar Candidatos"
@@ -544,11 +805,11 @@
 		quid       	"3C86D73B02B9")
 	    (object UseCase "Vizualizar Resultado"
 		quid       	"3C86D74F00CD")
-	    (object UseCase "Manter Disciplina"
+	    (object UseCase "Cadastrar Disciplina"
 		quid       	"3C8C2EBE00CB")
-	    (object UseCase "Manter Usuário"
+	    (object UseCase "Cadastrar Usuário"
 		quid       	"3C8C2ECA01D6")
-	    (object UseCase "Agendar Candidato"
+	    (object UseCase "Agendar Prova"
 		quid       	"3C8C2EE9025D"
 		documentation 	
 |1. Agendar Candidato
@@ -581,9 +842,9 @@
 |
 |E-3: A informação selecionada é inconsistente. O sistema reinicializa o sub-fluxo.
 		)
-	    (object UseCase "Manter Curso"
+	    (object UseCase "Cadastrar Curso"
 		quid       	"3C8C2EF301F3")
-	    (object UseCase "Manter Area"
+	    (object UseCase "  Cadastrar Area"
 		quid       	"3C8C2F1400EC")
 	    (object UseCase "Configurar Avaliação"
 		quid       	"3C8C2F1E0119")
@@ -593,7 +854,7 @@
 		quid       	"3C8C2F4002E4")
 	    (object UseCase "Cadastrar candidato"
 		quid       	"3C8C2F6C00CB")
-	    (object UseCase "Manter Questões"
+	    (object UseCase "Cadastrar Questões"
 		quid       	"3C8C2F81037E")
 	    (object Association "$UNNAMED$0"
 		quid       	"3C86D58E037A"
@@ -720,7 +981,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$31"
 			quid       	"3C8C301D0011"
-			supplier   	"Use Case View::Manter Disciplina"
+			supplier   	"Use Case View::Cadastrar Disciplina"
 			quidu      	"3C8C2EBE00CB"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$32"
@@ -732,7 +993,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$34"
 			quid       	"3C8C302001A6"
-			supplier   	"Use Case View::Manter Usuário"
+			supplier   	"Use Case View::Cadastrar Usuário"
 			quidu      	"3C8C2ECA01D6"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$35"
@@ -744,7 +1005,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$37"
 			quid       	"3C8C30270369"
-			supplier   	"Use Case View::Manter Area"
+			supplier   	"Use Case View::  Cadastrar Area"
 			quidu      	"3C8C2F1400EC"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$38"
@@ -756,7 +1017,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$40"
 			quid       	"3C8C302B0011"
-			supplier   	"Use Case View::Manter Curso"
+			supplier   	"Use Case View::Cadastrar Curso"
 			quidu      	"3C8C2EF301F3"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$41"
@@ -768,7 +1029,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$43"
 			quid       	"3C8C30430016"
-			supplier   	"Use Case View::Manter Questões"
+			supplier   	"Use Case View::Cadastrar Questões"
 			quidu      	"3C8C2F81037E"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$44"
@@ -792,7 +1053,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$49"
 			quid       	"3C8C305E0304"
-			supplier   	"Use Case View::Agendar Candidato"
+			supplier   	"Use Case View::Agendar Prova"
 			quidu      	"3C8C2EE9025D"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$50"
@@ -856,7 +1117,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$64"
 			quid       	"3C9BDE4F0050"
-			supplier   	"Use Case View::TConfAvaliacao"
+			supplier   	"Use Case View::TExameConfiguracao"
 			quidu      	"3C9298B801E0"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$65"
@@ -891,7 +1152,7 @@
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$71"
 			quid       	"3CAE434900BF"
-			supplier   	"Use Case View::TConfAvaliacao"
+			supplier   	"Use Case View::TExameConfiguracao"
 			quidu      	"3C9298B801E0"
 			client_cardinality 	(value cardinality "1")
 			is_navigable 	TRUE)))
@@ -900,7 +1161,7 @@
 		roles      	(list role_list
 		    (object Role "$UNNAMED$73"
 			quid       	"3CAE436E028A"
-			supplier   	"Use Case View::TConfAvaliacao"
+			supplier   	"Use Case View::TExameConfiguracao"
 			quidu      	"3C9298B801E0"
 			client_cardinality 	(value cardinality "1")
 			is_navigable 	TRUE)
@@ -1018,7 +1279,227 @@
 		    (object Role "$UNNAMED$95"
 			quid       	"3CAE517E0321"
 			supplier   	"Use Case View::TMakingProva"
-			quidu      	"3CAE4EAB01E0"))))
+			quidu      	"3CAE4EAB01E0")))
+	    (object Association "$UNNAMED$96"
+		quid       	"3CDDF1510100"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$97"
+			quid       	"3CDDF15102E1"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Value"
+			is_navigable 	TRUE
+			static     	TRUE)
+		    (object Role "$UNNAMED$98"
+			quid       	"3CDDF15102E2"
+			supplier   	"Use Case View::TLogin"
+			quidu      	"3CDDEFDF0266"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Value"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$99"
+		quid       	"3CDDF1AC035A"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$100"
+			quid       	"3CDDF1AD01A3"
+			supplier   	"Use Case View::TCadastros"
+			quidu      	"3CDDF0480308"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$101"
+			quid       	"3CDDF1AD01A4"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$102"
+		quid       	"3CDDF1AF03E0"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$103"
+			quid       	"3CDDF1B00215"
+			supplier   	"Use Case View::TRelatorios"
+			quidu      	"3CDDF10801EB"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$104"
+			quid       	"3CDDF1B00216"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Reference"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$105"
+		quid       	"3CDDF1B201A0"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$106"
+			quid       	"3CDDF1B20362"
+			supplier   	"Use Case View::TConf_Questao"
+			quidu      	"3CDDF0E00126"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE
+			static     	TRUE)
+		    (object Role "$UNNAMED$107"
+			quid       	"3CDDF1B2036C"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Reference"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$108"
+		quid       	"3CDDF1B40148"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$109"
+			quid       	"3CDDF1B402D9"
+			supplier   	"Use Case View::TCadastro_Questoes"
+			quidu      	"3CDDF08201D5"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Reference"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$110"
+			quid       	"3CDDF1B402E3"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$111"
+		quid       	"3CDDF1B600E7"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$112"
+			quid       	"3CDDF1B70085"
+			supplier   	"Use Case View::TAgendaCandidato"
+			quidu      	"3CDDF12F030A"
+			client_cardinality 	(value cardinality "1")
+			Containment 	"By Reference"
+			is_navigable 	TRUE
+			static     	TRUE)
+		    (object Role "$UNNAMED$113"
+			quid       	"3CDDF1B7008F"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE
+			static     	TRUE)))
+	    (object Association "$UNNAMED$114"
+		quid       	"3CDDF62702D7"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$115"
+			quid       	"3CDDF6280043"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$116"
+			quid       	"3CDDF6280044"
+			supplier   	"Use Case View::TLoginCandidato"
+			quidu      	"3CDDF392036D"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$117"
+		quid       	"3CDDF632000C"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$118"
+			quid       	"3CDDF6320188"
+			supplier   	"Use Case View::TProvaManager"
+			quidu      	"3C92904702F8"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$119"
+			quid       	"3CDDF6320192"
+			supplier   	"Use Case View::TQuestao"
+			quidu      	"3C929268012C"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$120"
+		quid       	"3CDDF63B02FE"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$121"
+			quid       	"3CDDF63C011E"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$122"
+			quid       	"3CDDF63C011F"
+			supplier   	"Use Case View::TProvaManager"
+			quidu      	"3C92904702F8"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$123"
+		quid       	"3CDDF6420235"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$124"
+			quid       	"3CDDF64300A6"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$125"
+			quid       	"3CDDF64300A7"
+			supplier   	"Use Case View::TQuestao"
+			quidu      	"3C929268012C"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$126"
+		quid       	"3CDDF6560090"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$127"
+			quid       	"3CDDF656022A"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$128"
+			quid       	"3CDDF656022B"
+			supplier   	"Use Case View::TAgendamento"
+			quidu      	"3C929DC1008C"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$129"
+		quid       	"3CDDF67C03C9"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$130"
+			quid       	"3CDDF67D0226"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$131"
+			quid       	"3CDDF67D0227"
+			supplier   	"Use Case View::TExameConfiguracao"
+			quidu      	"3C9298B801E0"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$132"
+		quid       	"3CDDF680018A"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$133"
+			quid       	"3CDDF6810037"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$134"
+			quid       	"3CDDF6810038"
+			supplier   	"Use Case View::TLoginUsuario"
+			quidu      	"3CDDF4390204"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$135"
+		quid       	"3CDDF69203AD"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$136"
+			quid       	"3CDDF6930200"
+			supplier   	"Use Case View::TAcesso"
+			quidu      	"3CDDF2F50321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$137"
+			quid       	"3CDDF6930201"
+			supplier   	"Use Case View::TCandidato"
+			quidu      	"3CDDF4B90262"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$138"
+		quid       	"3CE6659D004D"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$139"
+			quid       	"3CE6659D01CA"
+			supplier   	"Use Case View::TConexao"
+			quidu      	"3CDDF0090271"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$140"
+			quid       	"3CE6659D01D4"
+			supplier   	"Use Case View::TClienteProva"
+			quidu      	"3CDDEF45002A"
+			client_cardinality 	(value cardinality "1")
+			is_navigable 	TRUE))))
 	statemachine 	(object State_Machine "State/Activity Model"
 	    quid       	"3C86D7E900B0"
 	    states     	(list States
@@ -1053,7 +1534,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C86D9C50137"
-			    supplier   	"$UNNAMED$96"
+			    supplier   	"$UNNAMED$141"
 			    quidu      	"3C86D9AF013F"
 			    sendEvent  	(object sendEvent
 				quid       	"3C86D9C5013A"))))
@@ -1062,7 +1543,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C86D9BB02F5"
-			    supplier   	"$UNNAMED$96"
+			    supplier   	"$UNNAMED$141"
 			    quidu      	"3C86D9AF013F"
 			    sendEvent  	(object sendEvent
 				quid       	"3C86D9BB02F8"))))
@@ -1071,7 +1552,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C86D9C100B9"
-			    supplier   	"$UNNAMED$96"
+			    supplier   	"$UNNAMED$141"
 			    quidu      	"3C86D9AF013F"
 			    sendEvent  	(object sendEvent
 				quid       	"3C86D9C100BC"))))
@@ -1080,11 +1561,11 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C86D9B50057"
-			    supplier   	"$UNNAMED$96"
+			    supplier   	"$UNNAMED$141"
 			    quidu      	"3C86D9AF013F"
 			    sendEvent  	(object sendEvent
 				quid       	"3C86D9B5005A"))))
-		(object SynchronizationState "$UNNAMED$96"
+		(object SynchronizationState "$UNNAMED$141"
 		    quid       	"3C86D9AF013F"
 		    transitions 	(list transition_list
 			(object State_Transition
@@ -1224,7 +1705,7 @@
 				quid       	"3C8D461B0319"))
 			(object State_Transition
 			    quid       	"3C8D4727033E"
-			    supplier   	"$UNNAMED$97"
+			    supplier   	"$UNNAMED$142"
 			    quidu      	"3C8D47140370"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D47270341"))))
@@ -1254,7 +1735,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C8D46AE014A"
-			    supplier   	"$UNNAMED$98"
+			    supplier   	"$UNNAMED$143"
 			    quidu      	"3C8D46A500A0"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D46AE014D"))))
@@ -1263,7 +1744,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C8D46D8019A"
-			    supplier   	"$UNNAMED$99"
+			    supplier   	"$UNNAMED$144"
 			    quidu      	"3C8D46BE01E0"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D46D8019D"))))
@@ -1272,11 +1753,11 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C8D46DC0212"
-			    supplier   	"$UNNAMED$99"
+			    supplier   	"$UNNAMED$144"
 			    quidu      	"3C8D46BE01E0"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D46DC0215"))))
-		(object SynchronizationState "$UNNAMED$98"
+		(object SynchronizationState "$UNNAMED$143"
 		    quid       	"3C8D46A500A0"
 		    transitions 	(list transition_list
 			(object State_Transition
@@ -1291,7 +1772,7 @@
 			    quidu      	"3C8D4694023A"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D46BA03CD"))))
-		(object SynchronizationState "$UNNAMED$99"
+		(object SynchronizationState "$UNNAMED$144"
 		    quid       	"3C8D46BE01E0"
 		    transitions 	(list transition_list
 			(object State_Transition
@@ -1314,11 +1795,11 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"3C8D471C00F0"
-			    supplier   	"$UNNAMED$97"
+			    supplier   	"$UNNAMED$142"
 			    quidu      	"3C8D47140370"
 			    sendEvent  	(object sendEvent
 				quid       	"3C8D471C00F3"))))
-		(object SynchronizationState "$UNNAMED$97"
+		(object SynchronizationState "$UNNAMED$142"
 		    quid       	"3C8D47140370"
 		    transitions 	(list transition_list
 			(object State_Transition
@@ -1362,232 +1843,9 @@
 		    origin_x   	156
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object Swimlane "Supervisor" @1
+			(object Swimlane "" @1
 			    line_color 	3342489
-			    quidu      	"3C86D94601F2"
-			    width      	1144)
-			(object ActivityStateView "Cadastra professores" @2
-			    Parent_View 	@1
-			    location   	(248, 416)
-			    label      	(object ItemLabel
-				Parent_View 	@2
-				location   	(248, 417)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Cadastra professores")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D95B0351"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Cadastra usuario secretaria" @3
-			    Parent_View 	@1
-			    location   	(736, 352)
-			    label      	(object ItemLabel
-				Parent_View 	@3
-				location   	(736, 350)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	340
-				justify    	0
-				label      	"Cadastra usuario secretaria")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D963033E"
-			    width      	448
-			    height     	110
-			    autoResize 	TRUE)
-			(object ActivityStateView "Cadastra Disciplinas" @4
-			    Parent_View 	@1
-			    location   	(896, 672)
-			    label      	(object ItemLabel
-				Parent_View 	@4
-				location   	(896, 673)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Cadastra Disciplinas")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D98801B1"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Cadastra Areas" @5
-			    Parent_View 	@1
-			    location   	(248, 720)
-			    label      	(object ItemLabel
-				Parent_View 	@5
-				location   	(248, 721)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Cadastra Areas")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D992024C"
-			    autoResize 	TRUE)
-			(object Swimlane "Professor" @6
-			    location   	(1144, 0)
-			    line_color 	3342489
-			    quidu      	"3C86D92002CA"
-			    width      	654)
-			(object ActivityStateView "Cadastrar Questoes" @7
-			    Parent_View 	@6
-			    location   	(1472, 1088)
-			    label      	(object ItemLabel
-				Parent_View 	@7
-				location   	(1472, 1088)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Cadastrar Questoes")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D80602A6"
-			    height     	107
-			    autoResize 	TRUE)
-			(object Swimlane "Secretaria" @8
-			    location   	(1798, 0)
-			    line_color 	3342489
-			    quidu      	"3C86DA17018F"
-			    width      	792)
-			(object ActivityStateView "Configurar Avaliacoes" @9
-			    Parent_View 	@8
-			    location   	(2176, 1088)
-			    label      	(object ItemLabel
-				Parent_View 	@9
-				location   	(2176, 1089)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Configurar Avaliacoes")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D83002C5"
-			    autoResize 	TRUE)
-			(object TransView "" @10
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D87A0249"
-			    client     	@7
-			    supplier   	@9
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object StateView "EndState" "Avaliacao pronta" @11
-			    Parent_View 	@8
-			    location   	(2176, 1360)
-			    label      	(object ItemLabel
-				Parent_View 	@11
-				location   	(2230, 1318)
-				nlines     	2
-				max_width  	600
-				label      	"Avaliacao pronta")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DA2F00AD"
-			    autoResize 	TRUE)
-			(object Swimlane "" @12
-			    location   	(2590, 0)
-			    line_color 	3342489
-			    width      	450)
-			(object SynchronizationView "$UNNAMED$96" @13
-			    location   	(592, 880)
-			    label      	(object ItemLabel
-				Parent_View 	@13
-				location   	(894, 809)
-				nlines     	2
-				max_width  	300
-				label      	"")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86D9AF013F"
-			    width      	581
-			    autoResize 	TRUE
-			    sync_is_horizontal 	TRUE)
-			(object TransView "" @14
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D9B50057"
-			    client     	@5
-			    supplier   	@13
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @15
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D9BB02F5"
-			    client     	@3
-			    supplier   	@13
-			    vertices   	(list Points
-				(720, 410)
-				(618, 780)
-				(618, 871))
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @16
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D9C100B9"
-			    client     	@4
-			    supplier   	@13
-			    vertices   	(list Points
-				(812, 727)
-				(733, 780)
-				(733, 871))
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @17
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D9C50137"
-			    client     	@2
-			    supplier   	@13
-			    vertices   	(list Points
-				(288, 470)
-				(518, 780)
-				(518, 871))
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @18
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86D9EC0074"
-			    client     	@13
-			    supplier   	@7
-			    vertices   	(list Points
-				(882, 889)
-				(882, 1100)
-				(1301, 1100))
-			    line_style 	3
-			    origin_attachment 	(882, 889)
-			    terminal_attachment 	(1301, 1100)
-			    x_offset   	FALSE)
-			(object TransView "" @19
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DA510020"
-			    client     	@9
-			    supplier   	@11
-			    line_style 	0
-			    x_offset   	FALSE)))
+			    width      	450)))
 		(object ActivityDiagram "Cadastro do Candidato"
 		    quid       	"3C86DAA10300"
 		    title      	"Cadastro do Candidato"
@@ -1597,157 +1855,9 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object Swimlane "Secretaria atenden candidato" @20
+			(object Swimlane "" @2
 			    line_color 	3342489
-			    quidu      	"3C86DAC100E9"
-			    width      	1160)
-			(object ActivityStateView "Cadastra novo candidato" @21
-			    Parent_View 	@20
-			    location   	(416, 192)
-			    label      	(object ItemLabel
-				Parent_View 	@21
-				location   	(416, 193)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Cadastra novo candidato")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DAEA0391"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Agenda datas das provas" @22
-			    Parent_View 	@20
-			    location   	(416, 624)
-			    label      	(object ItemLabel
-				Parent_View 	@22
-				location   	(416, 625)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Agenda datas das provas")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DB060247"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Imprime formulario de cadastro" @23
-			    Parent_View 	@20
-			    location   	(416, 880)
-			    label      	(object ItemLabel
-				Parent_View 	@23
-				location   	(416, 878)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	330
-				justify    	0
-				label      	"Imprime formulario de cadastro")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DB2B0073"
-			    width      	438
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @24
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DB840252"
-			    client     	@22
-			    supplier   	@23
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Fornece codigo ao candidato" @25
-			    Parent_View 	@20
-			    location   	(416, 1104)
-			    label      	(object ItemLabel
-				Parent_View 	@25
-				location   	(416, 1102)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	338
-				justify    	0
-				label      	"Fornece codigo ao candidato")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DB4A02B3"
-			    width      	446
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @26
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DB870292"
-			    client     	@23
-			    supplier   	@25
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Seleciona Area" @27
-			    Parent_View 	@20
-			    location   	(432, 400)
-			    label      	(object ItemLabel
-				Parent_View 	@27
-				location   	(432, 401)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Seleciona Area")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DB5E03AC"
-			    autoResize 	TRUE)
-			(object TransView "" @28
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DB8001C0"
-			    client     	@21
-			    supplier   	@27
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @29
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DB8201A5"
-			    client     	@27
-			    supplier   	@22
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object StateView "EndState" "Canditato cadastrado e prova agendada" @30
-			    Parent_View 	@20
-			    location   	(416, 1376)
-			    label      	(object ItemLabel
-				Parent_View 	@30
-				location   	(470, 1334)
-				nlines     	2
-				max_width  	600
-				label      	"Canditato cadastrado e prova agendada")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C86DB8903E0"
-			    autoResize 	TRUE)
-			(object Swimlane "" @31
-			    location   	(1160, 0)
-			    line_color 	3342489
-			    width      	450)
-			(object TransView "" @32
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C86DBCB03C6"
-			    client     	@25
-			    supplier   	@30
-			    line_style 	0
-			    x_offset   	FALSE)))
+			    width      	450)))
 		(object ActivityDiagram "Efetuar a Prova"
 		    quid       	"3C8D450A0104"
 		    title      	"Efetuar a Prova"
@@ -1757,491 +1867,9 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object Swimlane "" @33
+			(object Swimlane "" @3
 			    line_color 	3342489
-			    width      	450)
-			(object StateView "StartState" "inicio da prova" @34
-			    Parent_View 	@33
-			    location   	(368, 64)
-			    label      	(object ItemLabel
-				Parent_View 	@34
-				location   	(410, 34)
-				nlines     	2
-				max_width  	600
-				label      	"inicio da prova")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D451A02E4"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Candidato efetua login" @35
-			    Parent_View 	@33
-			    location   	(368, 240)
-			    label      	(object ItemLabel
-				Parent_View 	@35
-				location   	(368, 241)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Candidato efetua login")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D452A000A"
-			    autoResize 	TRUE)
-			(object DecisionView "Login autorizado?" @36
-			    Parent_View 	@33
-			    location   	(368, 464)
-			    label      	(object ItemLabel
-				Parent_View 	@36
-				location   	(424, 415)
-				nlines     	2
-				max_width  	300
-				label      	"Login autorizado?")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D453A03A2"
-			    autoResize 	TRUE)
-			(object TransView "" @37
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D455E01CC"
-			    client     	@35
-			    supplier   	@36
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @38
-			    label      	(object SegLabel @39
-				Parent_View 	@38
-				location   	(177, 410)
-				anchor_loc 	1
-				nlines     	1
-				max_width  	450
-				justify    	0
-				label      	"NAO"
-				pctDist    	0.500000
-				height     	45
-				orientation 	0)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D459C00C8"
-			    client     	@36
-			    supplier   	@35
-			    vertices   	(list Points
-				(293, 464)
-				(228, 464)
-				(228, 295))
-			    line_style 	3
-			    origin_attachment 	(293, 464)
-			    terminal_attachment 	(228, 295)
-			    x_offset   	FALSE)
-			(object ActivityStateView "Sistema verifica candidato vs. data" @40
-			    Parent_View 	@33
-			    location   	(368, 656)
-			    label      	(object ItemLabel
-				Parent_View 	@40
-				location   	(368, 654)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	366
-				justify    	0
-				label      	"Sistema verifica candidato vs. data")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D457703B6"
-			    width      	474
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @41
-			    label      	(object SegLabel @42
-				Parent_View 	@41
-				location   	(413, 549)
-				anchor_loc 	1
-				nlines     	1
-				max_width  	450
-				justify    	0
-				label      	"SIM"
-				pctDist    	0.500000
-				height     	45
-				orientation 	0)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D458B033E"
-			    client     	@36
-			    supplier   	@40
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object DecisionView "candidato esperado?" @43
-			    Parent_View 	@33
-			    location   	(368, 864)
-			    label      	(object ItemLabel
-				Parent_View 	@43
-				location   	(424, 815)
-				nlines     	2
-				max_width  	300
-				label      	"candidato esperado?")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D45BF0352"
-			    autoResize 	TRUE)
-			(object TransView "" @44
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D45D300F0"
-			    client     	@40
-			    supplier   	@43
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Sistema apresenta as datas corretas" @45
-			    Parent_View 	@33
-			    location   	(1104, 864)
-			    label      	(object ItemLabel
-				Parent_View 	@45
-				location   	(1104, 862)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	368
-				justify    	0
-				label      	"Sistema apresenta as datas corretas")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D45DE006E"
-			    width      	476
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @46
-			    label      	(object SegLabel @47
-				Parent_View 	@46
-				location   	(668, 820)
-				anchor_loc 	1
-				nlines     	1
-				max_width  	450
-				justify    	0
-				label      	"NAO"
-				pctDist    	0.500000
-				height     	45
-				orientation 	0)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D45EB00B4"
-			    client     	@43
-			    supplier   	@45
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object StateView "EndState" "Fim do caso de uso" @48
-			    Parent_View 	@33
-			    location   	(768, 2832)
-			    label      	(object ItemLabel
-				Parent_View 	@48
-				location   	(822, 2790)
-				nlines     	2
-				max_width  	600
-				label      	"Fim do caso de uso")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46090078"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Sistema apresenta provas disponíveis" @49
-			    Parent_View 	@33
-			    location   	(384, 1088)
-			    label      	(object ItemLabel
-				Parent_View 	@49
-				location   	(384, 1086)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	412
-				justify    	0
-				label      	"Sistema apresenta provas disponíveis")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46200208"
-			    width      	520
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @50
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D465302F8"
-			    client     	@43
-			    supplier   	@49
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Candidato seleciona a prova" @51
-			    Parent_View 	@33
-			    location   	(384, 1344)
-			    label      	(object ItemLabel
-				Parent_View 	@51
-				location   	(384, 1342)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	312
-				justify    	0
-				label      	"Candidato seleciona a prova")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D464100FA"
-			    width      	420
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @52
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46500352"
-			    client     	@49
-			    supplier   	@51
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Sistema monta e apresenta a prova" @53
-			    Parent_View 	@33
-			    location   	(384, 1584)
-			    label      	(object ItemLabel
-				Parent_View 	@53
-				location   	(384, 1582)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	356
-				justify    	0
-				label      	"Sistema monta e apresenta a prova")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46690014"
-			    width      	464
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @54
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D467E006E"
-			    client     	@51
-			    supplier   	@53
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Candidato resolve a prova" @55
-			    Parent_View 	@33
-			    location   	(248, 1920)
-			    label      	(object ItemLabel
-				Parent_View 	@55
-				location   	(248, 1921)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Candidato resolve a prova")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D4687003C"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Tempo expira" @56
-			    Parent_View 	@33
-			    location   	(720, 1920)
-			    label      	(object ItemLabel
-				Parent_View 	@56
-				location   	(720, 1921)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Tempo expira")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D4694023A"
-			    autoResize 	TRUE)
-			(object ActivityStateView "Sistema corrige a prova" @57
-			    Parent_View 	@33
-			    location   	(432, 2240)
-			    label      	(object ItemLabel
-				Parent_View 	@57
-				location   	(432, 2241)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	268
-				justify    	0
-				label      	"Sistema corrige a prova")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46CE03C0"
-			    autoResize 	TRUE)
-			(object SynchronizationView "$UNNAMED$98" @58
-			    location   	(400, 1760)
-			    label      	(object ItemLabel
-				Parent_View 	@58
-				location   	(780, 1689)
-				nlines     	2
-				max_width  	300
-				label      	"")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46A500A0"
-			    width      	737
-			    autoResize 	TRUE
-			    sync_is_horizontal 	TRUE)
-			(object TransView "" @59
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46AE014A"
-			    client     	@53
-			    supplier   	@58
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @60
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46B600BE"
-			    client     	@58
-			    supplier   	@55
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @61
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46BA03CA"
-			    client     	@58
-			    supplier   	@56
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object SynchronizationView "$UNNAMED$99" @62
-			    location   	(432, 2064)
-			    label      	(object ItemLabel
-				Parent_View 	@62
-				location   	(775, 1993)
-				nlines     	2
-				max_width  	300
-				label      	"")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46BE01E0"
-			    width      	793
-			    autoResize 	TRUE
-			    sync_is_horizontal 	TRUE)
-			(object TransView "" @63
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46D8019A"
-			    client     	@55
-			    supplier   	@62
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @64
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46DC0212"
-			    client     	@56
-			    supplier   	@62
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @65
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46DF0294"
-			    client     	@62
-			    supplier   	@57
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object ActivityStateView "Sistema armazena a prova e o resultado" @66
-			    Parent_View 	@33
-			    location   	(448, 2432)
-			    label      	(object ItemLabel
-				Parent_View 	@66
-				location   	(448, 2430)
-				fill_color 	13434879
-				anchor_loc 	1
-				nlines     	2
-				max_width  	412
-				justify    	0
-				label      	"Sistema armazena a prova e o resultado")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D46E602E4"
-			    width      	520
-			    height     	110
-			    autoResize 	TRUE)
-			(object TransView "" @67
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D46F9008C"
-			    client     	@57
-			    supplier   	@66
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object SynchronizationView "$UNNAMED$97" @68
-			    location   	(768, 2656)
-			    label      	(object ItemLabel
-				Parent_View 	@68
-				location   	(930, 2585)
-				nlines     	2
-				max_width  	300
-				label      	"")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"3C8D47140370"
-			    width      	1138
-			    autoResize 	TRUE
-			    sync_is_horizontal 	TRUE)
-			(object TransView "" @69
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D471C00F0"
-			    client     	@66
-			    supplier   	@68
-			    vertices   	(list Points
-				(530, 2490)
-				(625, 2556)
-				(625, 2647))
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @70
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D472F00BE"
-			    client     	@68
-			    supplier   	@48
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @71
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D4727033E"
-			    client     	@45
-			    supplier   	@68
-			    vertices   	(list Points
-				(1093, 921)
-				(785, 2556)
-				(785, 2647))
-			    line_style 	0
-			    x_offset   	FALSE)
-			(object TransView "" @72
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3C8D4BF50262"
-			    client     	@34
-			    supplier   	@35
-			    line_style 	0
-			    x_offset   	FALSE)))))
+			    width      	450)))))
 	logical_presentations 	(list unit_reference_list
 	    (object UseCaseDiagram "Atores"
 		quid       	"3C86D31803E3"
@@ -2252,10 +1880,10 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object UseCaseView "Use Case View::Efetuar prova" @73
+		    (object UseCaseView "Use Case View::Efetuar prova" @4
 			location   	(784, 192)
 			label      	(object ItemLabel
-			    Parent_View 	@73
+			    Parent_View 	@4
 			    location   	(784, 330)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2267,13 +1895,13 @@
 			fill_color 	13434879
 			quidu      	"3C86D63000DE"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Candidato" @74
+		    (object ClassView "Class" "Use Case View::Candidato" @5
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
 			location   	(224, 224)
 			label      	(object ItemLabel
-			    Parent_View 	@74
+			    Parent_View 	@5
 			    location   	(224, 384)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2287,97 +1915,97 @@
 			quidu      	"3C86D4130220"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$15" @75
+		    (object AssociationViewNew "$UNNAMED$15" @6
 			location   	(477, 206)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C86D6370355"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$16" @76
-				Parent_View 	@75
+			    (object RoleView "$UNNAMED$16" @7
+				Parent_View 	@6
 				location   	(237, 46)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C86D638013A"
-				client     	@75
-				supplier   	@73
+				client     	@6
+				supplier   	@4
 				line_style 	0)
-			    (object RoleView "$UNNAMED$17" @77
-				Parent_View 	@75
+			    (object RoleView "$UNNAMED$17" @8
+				Parent_View 	@6
 				location   	(237, 46)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C86D638013B"
-				client     	@75
-				supplier   	@74
+				client     	@6
+				supplier   	@5
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Manter Disciplina" @78
+		    (object UseCaseView "Use Case View::Cadastrar Disciplina" @9
 			location   	(1296, 208)
 			label      	(object ItemLabel
-			    Parent_View 	@78
+			    Parent_View 	@9
 			    location   	(1296, 346)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Disciplina")
+			    label      	"Cadastrar Disciplina")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EBE00CB"
 			height     	118)
-		    (object UseCaseView "Use Case View::Manter Usuário" @79
+		    (object UseCaseView "Use Case View::Cadastrar Usuário" @10
 			location   	(1264, 528)
 			label      	(object ItemLabel
-			    Parent_View 	@79
+			    Parent_View 	@10
 			    location   	(1264, 666)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Usuário")
+			    label      	"Cadastrar Usuário")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2ECA01D6"
 			height     	118)
-		    (object UseCaseView "Use Case View::Manter Area" @80
+		    (object UseCaseView "Use Case View::  Cadastrar Area" @11
 			location   	(1520, 816)
 			label      	(object ItemLabel
-			    Parent_View 	@80
+			    Parent_View 	@11
 			    location   	(1520, 954)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Area")
+			    label      	"  Cadastrar Area")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2F1400EC"
 			height     	118)
-		    (object UseCaseView "Use Case View::Manter Curso" @81
+		    (object UseCaseView "Use Case View::Cadastrar Curso" @12
 			location   	(1904, 800)
 			label      	(object ItemLabel
-			    Parent_View 	@81
+			    Parent_View 	@12
 			    location   	(1904, 938)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Curso")
+			    label      	"Cadastrar Curso")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EF301F3"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Administrador" @82
+		    (object ClassView "Class" "Use Case View::Administrador" @13
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
 			location   	(1904, 208)
 			label      	(object ItemLabel
-			    Parent_View 	@82
+			    Parent_View 	@13
 			    location   	(1904, 368)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2391,124 +2019,124 @@
 			quidu      	"3C8C30120386"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$30" @83
+		    (object AssociationViewNew "$UNNAMED$30" @14
 			location   	(1623, 208)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C301C0178"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$31" @84
-				Parent_View 	@83
+			    (object RoleView "$UNNAMED$31" @15
+				Parent_View 	@14
 				location   	(-121, -48)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C301D0011"
-				client     	@83
-				supplier   	@78
+				client     	@14
+				supplier   	@9
 				line_style 	0)
-			    (object RoleView "$UNNAMED$32" @85
-				Parent_View 	@83
+			    (object RoleView "$UNNAMED$32" @16
+				Parent_View 	@14
 				location   	(-121, -48)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C301D001B"
-				client     	@83
-				supplier   	@82
+				client     	@14
+				supplier   	@13
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$33" @86
+		    (object AssociationViewNew "$UNNAMED$33" @17
 			location   	(1608, 353)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C301F0321"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$34" @87
-				Parent_View 	@86
+			    (object RoleView "$UNNAMED$34" @18
+				Parent_View 	@17
 				location   	(-136, 97)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C302001A6"
-				client     	@86
-				supplier   	@79
+				client     	@17
+				supplier   	@10
 				line_style 	0)
-			    (object RoleView "$UNNAMED$35" @88
-				Parent_View 	@86
+			    (object RoleView "$UNNAMED$35" @19
+				Parent_View 	@17
 				location   	(-136, 97)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C302001A7"
-				client     	@86
-				supplier   	@82
+				client     	@17
+				supplier   	@13
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$36" @89
+		    (object AssociationViewNew "$UNNAMED$36" @20
 			location   	(1702, 522)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C302700C0"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$37" @90
-				Parent_View 	@89
+			    (object RoleView "$UNNAMED$37" @21
+				Parent_View 	@20
 				location   	(-42, 266)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C30270369"
-				client     	@89
-				supplier   	@80
+				client     	@20
+				supplier   	@11
 				line_style 	0)
-			    (object RoleView "$UNNAMED$38" @91
-				Parent_View 	@89
+			    (object RoleView "$UNNAMED$38" @22
+				Parent_View 	@20
 				location   	(-42, 266)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C3027036A"
-				client     	@89
-				supplier   	@82
+				client     	@20
+				supplier   	@13
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$39" @92
+		    (object AssociationViewNew "$UNNAMED$39" @23
 			location   	(1904, 513)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C302A0178"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$40" @93
-				Parent_View 	@92
+			    (object RoleView "$UNNAMED$40" @24
+				Parent_View 	@23
 				location   	(160, 257)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C302B0011"
-				client     	@92
-				supplier   	@81
+				client     	@23
+				supplier   	@12
 				line_style 	0)
-			    (object RoleView "$UNNAMED$41" @94
-				Parent_View 	@92
+			    (object RoleView "$UNNAMED$41" @25
+				Parent_View 	@23
 				location   	(160, 257)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C302B0012"
-				client     	@92
-				supplier   	@82
+				client     	@23
+				supplier   	@13
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Manter Questões" @95
+		    (object UseCaseView "Use Case View::Cadastrar Questões" @26
 			location   	(736, 576)
 			label      	(object ItemLabel
-			    Parent_View 	@95
+			    Parent_View 	@26
 			    location   	(736, 714)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Questões")
+			    label      	"Cadastrar Questões")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2F81037E"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Professor" @96
+		    (object ClassView "Class" "Use Case View::Professor" @27
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
 			location   	(240, 576)
 			label      	(object ItemLabel
-			    Parent_View 	@96
+			    Parent_View 	@27
 			    location   	(240, 736)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2522,34 +2150,34 @@
 			quidu      	"3C86D41F0340"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$42" @97
+		    (object AssociationViewNew "$UNNAMED$42" @28
 			location   	(460, 576)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C304200F0"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$43" @98
-				Parent_View 	@97
+			    (object RoleView "$UNNAMED$43" @29
+				Parent_View 	@28
 				location   	(268, -64)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C30430016"
-				client     	@97
-				supplier   	@95
+				client     	@28
+				supplier   	@26
 				line_style 	0)
-			    (object RoleView "$UNNAMED$44" @99
-				Parent_View 	@97
+			    (object RoleView "$UNNAMED$44" @30
+				Parent_View 	@28
 				location   	(268, -64)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C30430017"
-				client     	@97
-				supplier   	@96
+				client     	@28
+				supplier   	@27
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Configurar Avaliação" @100
+		    (object UseCaseView "Use Case View::Configurar Avaliação" @31
 			location   	(1216, 1680)
 			label      	(object ItemLabel
-			    Parent_View 	@100
+			    Parent_View 	@31
 			    location   	(1216, 1818)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2561,13 +2189,13 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F1E0119"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Coordenador" @101
+		    (object ClassView "Class" "Use Case View::Coordenador" @32
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
 			location   	(1776, 1712)
 			label      	(object ItemLabel
-			    Parent_View 	@101
+			    Parent_View 	@32
 			    location   	(1776, 1872)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2581,49 +2209,49 @@
 			quidu      	"3C86D43C0071"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$45" @102
+		    (object AssociationViewNew "$UNNAMED$45" @33
 			location   	(1520, 1694)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C305A0286"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$46" @103
-				Parent_View 	@102
+			    (object RoleView "$UNNAMED$46" @34
+				Parent_View 	@33
 				location   	(1296, 318)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C305B0151"
-				client     	@102
-				supplier   	@100
+				client     	@33
+				supplier   	@31
 				line_style 	0)
-			    (object RoleView "$UNNAMED$47" @104
-				Parent_View 	@102
+			    (object RoleView "$UNNAMED$47" @35
+				Parent_View 	@33
 				location   	(1296, 318)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C305B0152"
-				client     	@102
-				supplier   	@101
+				client     	@33
+				supplier   	@32
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Agendar Candidato" @105
+		    (object UseCaseView "Use Case View::Agendar Prova" @36
 			location   	(1024, 864)
 			label      	(object ItemLabel
-			    Parent_View 	@105
+			    Parent_View 	@36
 			    location   	(1024, 1002)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Agendar Candidato")
+			    label      	"Agendar Prova")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EE9025D"
 			height     	118)
-		    (object UseCaseView "Use Case View::Administrar Processo Seletivo" @106
+		    (object UseCaseView "Use Case View::Administrar Processo Seletivo" @37
 			location   	(736, 1360)
 			label      	(object ItemLabel
-			    Parent_View 	@106
+			    Parent_View 	@37
 			    location   	(736, 1498)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2635,10 +2263,10 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F2A02CF"
 			height     	118)
-		    (object UseCaseView "Use Case View::Cadastrar Locais e horarios disponiveis" @107
+		    (object UseCaseView "Use Case View::Cadastrar Locais e horarios disponiveis" @38
 			location   	(1200, 1184)
 			label      	(object ItemLabel
-			    Parent_View 	@107
+			    Parent_View 	@38
 			    location   	(1200, 1322)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2650,13 +2278,13 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F4002E4"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Secretaria" @108
+		    (object ClassView "Class" "Use Case View::Secretaria" @39
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
 			location   	(240, 928)
 			label      	(object ItemLabel
-			    Parent_View 	@108
+			    Parent_View 	@39
 			    location   	(240, 1088)
 			    anchor_loc 	1
 			    nlines     	2
@@ -2670,160 +2298,137 @@
 			quidu      	"3C86D4280267"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$48" @109
+		    (object AssociationViewNew "$UNNAMED$48" @40
 			location   	(605, 895)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C305E0173"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$49" @110
-				Parent_View 	@109
+			    (object RoleView "$UNNAMED$49" @41
+				Parent_View 	@40
 				location   	(429, -97)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C305E0304"
-				client     	@109
-				supplier   	@105
+				client     	@40
+				supplier   	@36
 				line_style 	0)
-			    (object RoleView "$UNNAMED$50" @111
-				Parent_View 	@109
+			    (object RoleView "$UNNAMED$50" @42
+				Parent_View 	@40
 				location   	(429, -97)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C305E0305"
-				client     	@109
-				supplier   	@108
+				client     	@40
+				supplier   	@39
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$51" @112
+		    (object AssociationViewNew "$UNNAMED$51" @43
 			location   	(483, 1140)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C306502FA"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$52" @113
-				Parent_View 	@112
+			    (object RoleView "$UNNAMED$52" @44
+				Parent_View 	@43
 				location   	(307, 148)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C306601A7"
-				client     	@112
-				supplier   	@106
+				client     	@43
+				supplier   	@37
 				line_style 	0)
-			    (object RoleView "$UNNAMED$53" @114
-				Parent_View 	@112
+			    (object RoleView "$UNNAMED$53" @45
+				Parent_View 	@43
 				location   	(307, 148)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C306601A8"
-				client     	@112
-				supplier   	@108
+				client     	@43
+				supplier   	@39
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$54" @115
+		    (object AssociationViewNew "$UNNAMED$54" @46
 			location   	(693, 1046)
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"3C8C308402CC"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$55" @116
-				Parent_View 	@115
+			    (object RoleView "$UNNAMED$55" @47
+				Parent_View 	@46
 				location   	(517, 54)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C30850115"
-				client     	@115
-				supplier   	@107
+				client     	@46
+				supplier   	@38
 				line_style 	0)
-			    (object RoleView "$UNNAMED$56" @117
-				Parent_View 	@115
+			    (object RoleView "$UNNAMED$56" @48
+				Parent_View 	@46
 				location   	(517, 54)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C8C30850116"
-				client     	@115
-				supplier   	@108
+				client     	@46
+				supplier   	@39
 				line_style 	0)))))
-	    (object ClassDiagram "Diagramas de Classes"
+	    (object ClassDiagram "Classes do Servidor"
 		quid       	"3C9290340064"
-		title      	"Diagramas de Classes"
+		title      	"Classes do Servidor"
 		zoom       	100
 		max_height 	28350
 		max_width  	21600
-		origin_x   	1869
+		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Use Case View::TAlternativas" @118
+		    (object ClassView "Class" "Use Case View::TLoginCandidato" @49
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1296, 395)
+			location   	(1024, 272)
 			label      	(object ItemLabel
-			    Parent_View 	@118
-			    location   	(1028, 164)
+			    Parent_View 	@49
+			    location   	(816, 116)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	536
+			    max_width  	416
 			    justify    	0
-			    label      	"TAlternativas")
+			    label      	"TLoginCandidato")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3C92948C000A"
-			compartment 	(object Compartment
-			    Parent_View 	@118
-			    location   	(1028, 225)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	8
-			    max_width  	543)
-			width      	554
-			height     	486
+			quidu      	"3CDDF392036D"
+			width      	434
+			height     	336
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::TAlternativa" @119
+		    (object ClassView "Class" "Use Case View::TProvaManager" @50
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1968, 394)
+			location   	(1744, 1104)
 			label      	(object ItemLabel
-			    Parent_View 	@119
-			    location   	(1840, 313)
+			    Parent_View 	@50
+			    location   	(1561, 898)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	256
+			    max_width  	366
 			    justify    	0
-			    label      	"TAlternativa")
+			    label      	"TProvaManager")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3C92962603CA"
-			compartment 	(object Compartment
-			    Parent_View 	@119
-			    location   	(1840, 374)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	2
-			    max_width  	156)
-			width      	274
-			height     	186
+			quidu      	"3C92904702F8"
+			width      	384
+			height     	436
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UsesView "" @120
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3C9551510238"
-			client     	@118
-			supplier   	@119
-			line_style 	0)
-		    (object ClassView "Class" "Use Case View::TQuestao" @121
+		    (object ClassView "Class" "Use Case View::TQuestao" @51
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(400, 400)
+			location   	(1744, 400)
 			label      	(object ItemLabel
-			    Parent_View 	@121
-			    location   	(135, 94)
+			    Parent_View 	@51
+			    location   	(1479, 94)
 			    fill_color 	13434879
 			    nlines     	1
 			    max_width  	530
@@ -2833,62 +2438,46 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C929268012C"
-			compartment 	(object Compartment
-			    Parent_View 	@121
-			    location   	(135, 155)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	11
-			    max_width  	537)
 			width      	548
 			height     	636
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UsesView "" @122
+		    (object AssociationViewNew "$UNNAMED$117" @52
+			location   	(1744, 802)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"3C9551230304"
-			client     	@121
-			supplier   	@118
-			line_style 	0)
-		    (object ClassView "Class" "Use Case View::TConfAvaliacao" @123
+			quidu      	"3CDDF632000C"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$118" @53
+				Parent_View 	@52
+				location   	(0, 402)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6320188"
+				client     	@52
+				supplier   	@50
+				line_style 	3
+				origin_attachment 	(1744, 802)
+				terminal_attachment 	(1744, 886))
+			    (object RoleView "$UNNAMED$119" @54
+				Parent_View 	@52
+				location   	(0, 402)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6320192"
+				client     	@52
+				supplier   	@51
+				line_style 	3
+				origin_attachment 	(1744, 802)
+				terminal_attachment 	(1744, 718))))
+		    (object ClassView "Class" "Use Case View::TAgendamento" @55
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(484, 1040)
+			location   	(1040, 1680)
 			label      	(object ItemLabel
-			    Parent_View 	@123
-			    location   	(276, 834)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	416
-			    justify    	0
-			    label      	"TConfAvaliacao")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"3C9298B801E0"
-			compartment 	(object Compartment
-			    Parent_View 	@123
-			    location   	(276, 895)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	7
-			    max_width  	421)
-			width      	434
-			height     	436
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::TAgendamento" @124
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(480, 2240)
-			label      	(object ItemLabel
-			    Parent_View 	@124
-			    location   	(271, 2034)
+			    Parent_View 	@55
+			    location   	(831, 1499)
 			    fill_color 	13434879
 			    nlines     	1
 			    max_width  	418
@@ -2898,527 +2487,409 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C929DC1008C"
-			compartment 	(object Compartment
-			    Parent_View 	@124
-			    location   	(271, 2095)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	7
-			    max_width  	425)
 			width      	436
-			height     	436
+			height     	386
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::Usuarios" @125
+		    (object ClassView "Class" "Use Case View::TExameConfiguracao" @56
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1392, 2240)
+			location   	(352, 1616)
 			label      	(object ItemLabel
-			    Parent_View 	@125
-			    location   	(1203, 2109)
+			    Parent_View 	@56
+			    location   	(104, 1385)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	378
+			    max_width  	496
 			    justify    	0
-			    label      	"Usuarios")
+			    label      	"TExameConfiguracao")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3C9BC1E40212"
-			compartment 	(object Compartment
-			    Parent_View 	@125
-			    location   	(1203, 2170)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	4
-			    max_width  	384)
-			width      	396
-			height     	286
-			annotation 	8
-			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$78" @126
-			location   	(945, 2240)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3CAE44A30186"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$79" @127
-				Parent_View 	@126
-				location   	(465, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE44A30302"
-				client     	@126
-				supplier   	@125
-				line_style 	0
-				label      	(object SegLabel @128
-				    Parent_View 	@127
-				    location   	(1168, 2294)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))
-			    (object RoleView "$UNNAMED$80" @129
-				Parent_View 	@126
-				location   	(465, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE44A30303"
-				client     	@126
-				supplier   	@124
-				line_style 	0
-				label      	(object SegLabel @130
-				    Parent_View 	@129
-				    location   	(724, 2294)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))))
-		    (object ClassView "Class" "Use Case View::TCurso" @131
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(2128, 2240)
-			label      	(object ItemLabel
-			    Parent_View 	@131
-			    location   	(1961, 2109)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	334
-			    justify    	0
-			    label      	"TCurso")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"3CAE454A005A"
-			compartment 	(object Compartment
-			    Parent_View 	@131
-			    location   	(1961, 2170)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	4
-			    max_width  	331)
-			width      	352
-			height     	286
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::TDisciplina" @132
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(2112, 1648)
-			label      	(object ItemLabel
-			    Parent_View 	@132
-			    location   	(1911, 1517)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	402
-			    justify    	0
-			    label      	"TDisciplina")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"3CAE462E019A"
-			compartment 	(object Compartment
-			    Parent_View 	@132
-			    location   	(1911, 1578)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	4
-			    max_width  	400)
-			width      	420
-			height     	286
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Use Case View::TConfProva" @133
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(480, 1648)
-			label      	(object ItemLabel
-			    Parent_View 	@133
-			    location   	(121, 1492)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	718
-			    justify    	0
-			    label      	"TConfProva")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"3C9291D30078"
-			compartment 	(object Compartment
-			    Parent_View 	@133
-			    location   	(121, 1553)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	5
-			    max_width  	725)
-			width      	736
-			height     	336
-			annotation 	8
-			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$69" @134
-			location   	(481, 1368)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3CAE434802EE"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$70" @135
-				Parent_View 	@134
-				location   	(145, 328)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE434900BE"
-				client     	@134
-				supplier   	@133
-				line_style 	0
-				label      	(object SegLabel @136
-				    Parent_View 	@135
-				    location   	(535, 1467)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"*"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))
-			    (object RoleView "$UNNAMED$71" @137
-				Parent_View 	@134
-				location   	(145, 328)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE434900BF"
-				client     	@134
-				supplier   	@123
-				line_style 	0
-				label      	(object SegLabel @138
-				    Parent_View 	@137
-				    location   	(536, 1270)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))))
-		    (object AssociationViewNew "$UNNAMED$75" @139
-			location   	(480, 1918)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3CAE44790280"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$76" @140
-				Parent_View 	@139
-				location   	(0, -322)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE447A0050"
-				client     	@139
-				supplier   	@133
-				line_style 	0
-				label      	(object SegLabel @141
-				    Parent_View 	@140
-				    location   	(534, 1826)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))
-			    (object RoleView "$UNNAMED$77" @142
-				Parent_View 	@139
-				location   	(0, -322)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE447A0051"
-				client     	@139
-				supplier   	@124
-				line_style 	0
-				label      	(object SegLabel @143
-				    Parent_View 	@142
-				    location   	(534, 2010)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))))
-		    (object ClassView "Class" "Use Case View::TQuestoesDisciplina" @144
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(1280, 1648)
-			label      	(object ItemLabel
-			    Parent_View 	@144
-			    location   	(1038, 1417)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	484
-			    justify    	0
-			    label      	"TQuestoesDisciplina")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"3C9292370168"
-			compartment 	(object Compartment
-			    Parent_View 	@144
-			    location   	(1038, 1478)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	8
-			    max_width  	490)
-			width      	502
+			quidu      	"3C9298B801E0"
+			width      	514
 			height     	486
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$81" @145
-			location   	(938, 1648)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3CAE4B76015E"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$82" @146
-				Parent_View 	@145
-				location   	(458, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE4B770118"
-				client     	@145
-				supplier   	@144
-				line_style 	0
-				label      	(object SegLabel @147
-				    Parent_View 	@146
-				    location   	(1014, 1702)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"*"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))
-			    (object RoleView "$UNNAMED$83" @148
-				Parent_View 	@145
-				location   	(458, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE4B770154"
-				client     	@145
-				supplier   	@133
-				line_style 	0
-				label      	(object SegLabel @149
-				    Parent_View 	@148
-				    location   	(862, 1702)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))))
-		    (object ClassView "Class" "Use Case View::TProvaManager" @150
+		    (object ClassView "Class" "Use Case View::TLoginUsuario" @57
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1264, 1040)
+			location   	(304, 912)
 			label      	(object ItemLabel
-			    Parent_View 	@150
-			    location   	(1077, 834)
+			    Parent_View 	@57
+			    location   	(157, 781)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	374
+			    max_width  	294
 			    justify    	0
-			    label      	"TProvaManager")
+			    label      	"TLoginUsuario")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3C92904702F8"
-			compartment 	(object Compartment
-			    Parent_View 	@150
-			    location   	(1077, 895)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	7
-			    max_width  	381)
-			width      	392
-			height     	436
+			quidu      	"3CDDF4390204"
+			width      	312
+			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$60" @151
-			location   	(870, 748)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3C9BDC390064"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$61" @152
-				Parent_View 	@151
-				location   	(-234, -276)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3C9BDC39021C"
-				client     	@151
-				supplier   	@121
-				line_style 	0
-				label      	(object SegLabel @153
-				    Parent_View 	@152
-				    location   	(663, 661)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"*"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))
-			    (object RoleView "$UNNAMED$62" @154
-				Parent_View 	@151
-				location   	(-234, -276)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3C9BDC39021D"
-				client     	@151
-				supplier   	@150
-				line_style 	0
-				label      	(object SegLabel @155
-				    Parent_View 	@154
-				    location   	(1015, 921)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))))
-		    (object AssociationViewNew "$UNNAMED$72" @156
-			location   	(884, 1040)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"3CAE436E010E"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$73" @157
-				Parent_View 	@156
-				location   	(-236, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE436E028A"
-				client     	@156
-				supplier   	@123
-				line_style 	0
-				label      	(object SegLabel @158
-				    Parent_View 	@157
-				    location   	(720, 1094)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))
-			    (object RoleView "$UNNAMED$74" @159
-				Parent_View 	@156
-				location   	(-236, 0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE436E02C6"
-				client     	@156
-				supplier   	@150
-				line_style 	0
-				label      	(object SegLabel @160
-				    Parent_View 	@159
-				    location   	(1048, 1094)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	1))))
-		    (object ClassView "Class" "Use Case View::TMakingProva" @161
+		    (object ClassView "Class" "Use Case View::TAcesso" @58
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(2432, 1168)
+			location   	(1040, 1104)
 			label      	(object ItemLabel
-			    Parent_View 	@161
-			    location   	(2189, 912)
+			    Parent_View 	@58
+			    location   	(926, 973)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	486
+			    max_width  	228
 			    justify    	0
-			    label      	"TMakingProva")
+			    label      	"TAcesso")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3CAE4EAB01E0"
-			compartment 	(object Compartment
-			    Parent_View 	@161
-			    location   	(2189, 973)
-			    icon_style 	"Icon"
+			quidu      	"3CDDF2F50321"
+			width      	246
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$114" @59
+			location   	(1091, 700)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF62702D7"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$115" @60
+				Parent_View 	@59
+				location   	(51, 444)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6280043"
+				client     	@59
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(1091, 700)
+				terminal_attachment 	(1091, 961))
+			    (object RoleView "$UNNAMED$116" @61
+				Parent_View 	@59
+				location   	(51, 444)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6280044"
+				client     	@59
+				supplier   	@49
+				line_style 	3
+				origin_attachment 	(1091, 700)
+				terminal_attachment 	(1091, 440))))
+		    (object AssociationViewNew "$UNNAMED$120" @62
+			location   	(1357, 1104)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF63B02FE"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$121" @63
+				Parent_View 	@62
+				location   	(-387, 0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF63C011E"
+				client     	@62
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(1357, 1104)
+				terminal_attachment 	(1163, 1104))
+			    (object RoleView "$UNNAMED$122" @64
+				Parent_View 	@62
+				location   	(-387, 0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF63C011F"
+				client     	@62
+				supplier   	@50
+				line_style 	3
+				origin_attachment 	(1357, 1104)
+				terminal_attachment 	(1552, 1104))))
+		    (object AssociationViewNew "$UNNAMED$123" @65
+			location   	(1431, 999)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF6420235"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$124" @66
+				Parent_View 	@65
+				location   	(-313, 599)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF64300A6"
+				client     	@65
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(1431, 999)
+				terminal_attachment 	(1163, 999)
+				label      	(object SegLabel @67
+				    Parent_View 	@66
+				    location   	(1187, 1053)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$125" @68
+				Parent_View 	@65
+				location   	(-313, 599)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF64300A7"
+				client     	@65
+				supplier   	@51
+				vertices   	(list Points
+				    (1431, 999)
+				    (1491, 999)
+				    (1491, 718))
+				line_style 	3
+				origin_attachment 	(1431, 999)
+				terminal_attachment 	(1491, 718)
+				label      	(object SegLabel @69
+				    Parent_View 	@68
+				    location   	(1545, 751)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))
+		    (object AssociationViewNew "$UNNAMED$126" @70
+			location   	(1040, 1367)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF6560090"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$127" @71
+				Parent_View 	@70
+				location   	(-32, -313)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF656022A"
+				client     	@70
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(1040, 1367)
+				terminal_attachment 	(1040, 1247))
+			    (object RoleView "$UNNAMED$128" @72
+				Parent_View 	@70
+				location   	(-32, -313)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF656022B"
+				client     	@70
+				supplier   	@55
+				line_style 	3
+				origin_attachment 	(1040, 1367)
+				terminal_attachment 	(1040, 1487))))
+		    (object AssociationViewNew "$UNNAMED$129" @73
+			location   	(587, 1196)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF67C03C9"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$130" @74
+				Parent_View 	@73
+				location   	(235, -420)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF67D0226"
+				client     	@73
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(587, 1196)
+				terminal_attachment 	(917, 1196))
+			    (object RoleView "$UNNAMED$131" @75
+				Parent_View 	@73
+				location   	(235, -420)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF67D0227"
+				client     	@73
+				supplier   	@56
+				vertices   	(list Points
+				    (587, 1196)
+				    (434, 1196)
+				    (434, 1373))
+				line_style 	3
+				origin_attachment 	(587, 1196)
+				terminal_attachment 	(434, 1373))))
+		    (object AssociationViewNew "$UNNAMED$132" @76
+			location   	(688, 1008)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF680018A"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$133" @77
+				Parent_View 	@76
+				location   	(384, 96)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6810037"
+				client     	@76
+				supplier   	@58
+				line_style 	3
+				origin_attachment 	(688, 1008)
+				terminal_attachment 	(917, 1008))
+			    (object RoleView "$UNNAMED$134" @78
+				Parent_View 	@76
+				location   	(384, 96)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6810038"
+				client     	@76
+				supplier   	@57
+				line_style 	3
+				origin_attachment 	(688, 1008)
+				terminal_attachment 	(460, 1008))))
+		    (object ClassView "Class" "Use Case View::TCandidato" @79
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(336, 304)
+			label      	(object ItemLabel
+			    Parent_View 	@79
+			    location   	(157, 173)
 			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	9
-			    max_width  	493)
-			width      	504
+			    nlines     	1
+			    max_width  	358
+			    justify    	0
+			    label      	"TCandidato")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF4B90262"
+			width      	376
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$135" @80
+			location   	(757, 641)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF69203AD"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$136" @81
+				Parent_View 	@80
+				location   	(421, 337)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6930200"
+				client     	@80
+				supplier   	@58
+				vertices   	(list Points
+				    (757, 641)
+				    (969, 641)
+				    (969, 961))
+				line_style 	3
+				origin_attachment 	(757, 641)
+				terminal_attachment 	(969, 961))
+			    (object RoleView "$UNNAMED$137" @82
+				Parent_View 	@80
+				location   	(421, 337)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF6930201"
+				client     	@80
+				supplier   	@79
+				vertices   	(list Points
+				    (757, 641)
+				    (419, 641)
+				    (419, 447))
+				line_style 	3
+				origin_attachment 	(757, 641)
+				terminal_attachment 	(419, 447))))))
+	    (object ClassDiagram "Classes Cliente Prova"
+		quid       	"3CDDEF2202B5"
+		title      	"Classes Cliente Prova"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	19
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Use Case View::TConexao" @83
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1264, 432)
+			label      	(object ItemLabel
+			    Parent_View 	@83
+			    location   	(1150, 301)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	228
+			    justify    	0
+			    label      	"TConexao")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF0090271"
+			width      	246
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TClienteProva" @84
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(464, 432)
+			label      	(object ItemLabel
+			    Parent_View 	@84
+			    location   	(253, 176)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	422
+			    justify    	0
+			    label      	"TClienteProva")
+			icon       	"control"
+			icon_style 	"None"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDEF45002A"
+			width      	440
 			height     	536
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$84" @162
-			location   	(1819, 1100)
+		    (object AssociationViewNew "$UNNAMED$138" @85
+			location   	(912, 432)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"3CAE4F8300E6"
+			quidu      	"3CE6659D004D"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$85" @163
-				Parent_View 	@162
-				location   	(555, 60)
+			    (object RoleView "$UNNAMED$139" @86
+				Parent_View 	@85
+				location   	(448, 0)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"3CAE4F8302DA"
-				client     	@162
-				supplier   	@161
+				quidu      	"3CE6659D01CA"
+				client     	@85
+				supplier   	@83
+				line_style 	0)
+			    (object RoleView "$UNNAMED$140" @87
+				Parent_View 	@85
+				location   	(448, 0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CE6659D01D4"
+				client     	@85
+				supplier   	@84
 				line_style 	0
-				label      	(object SegLabel @164
-				    Parent_View 	@163
-				    location   	(2161, 1193)
+				label      	(object SegLabel @88
+				    Parent_View 	@87
+				    location   	(702, 486)
 				    anchor     	2
 				    anchor_loc 	1
 				    nlines     	1
@@ -3427,75 +2898,183 @@
 				    label      	"1"
 				    pctDist    	0.900000
 				    height     	54
-				    orientation 	1))
-			    (object RoleView "$UNNAMED$86" @165
-				Parent_View 	@162
-				location   	(555, 60)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"3CAE4F8302DB"
-				client     	@162
-				supplier   	@150
-				line_style 	0
-				label      	(object SegLabel @166
-				    Parent_View 	@165
-				    location   	(1466, 1116)
-				    anchor     	2
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	15
-				    justify    	0
-				    label      	"1"
-				    pctDist    	0.900000
-				    height     	54
-				    orientation 	0))))
-		    (object ClassView "Class" "Use Case View::THistoricoProva" @167
+				    orientation 	0))))))
+	    (object ClassDiagram "Classes Cliente Administrativo"
+		quid       	"3CDDEF3602FA"
+		title      	"Classes Cliente Administrativo"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Use Case View::TLogin" @89
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(2437, 432)
+			location   	(288, 368)
 			label      	(object ItemLabel
-			    Parent_View 	@167
-			    location   	(2240, 226)
+			    Parent_View 	@89
+			    location   	(135, 237)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	394
+			    max_width  	306
 			    justify    	0
-			    label      	"THistoricoProva")
+			    label      	"TLogin")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"3C929E8001F4"
-			compartment 	(object Compartment
-			    Parent_View 	@167
-			    location   	(2240, 287)
-			    icon_style 	"Icon"
-			    fill_color 	16777215
-			    anchor     	2
-			    nlines     	7
-			    max_width  	400)
-			width      	412
-			height     	436
+			quidu      	"3CDDEFDF0266"
+			width      	324
+			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$90" @168
-			location   	(1845, 736)
+		    (object ClassView "Class" "Use Case View::TCadastros" @90
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1920, 368)
+			label      	(object ItemLabel
+			    Parent_View 	@90
+			    location   	(1758, 212)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	324
+			    justify    	0
+			    label      	"TCadastros")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF0480308"
+			width      	342
+			height     	336
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TRelatorios" @91
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(864, 896)
+			label      	(object ItemLabel
+			    Parent_View 	@91
+			    location   	(689, 790)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	350
+			    justify    	0
+			    label      	"TRelatorios")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF10801EB"
+			width      	368
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TConf_Questao" @92
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1824, 880)
+			label      	(object ItemLabel
+			    Parent_View 	@92
+			    location   	(1669, 749)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	310
+			    justify    	0
+			    label      	"TConf_Questao")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF0E00126"
+			width      	328
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TCadastro_Questoes" @93
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(352, 832)
+			label      	(object ItemLabel
+			    Parent_View 	@93
+			    location   	(132, 651)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	440
+			    justify    	0
+			    label      	"TCadastro_Questoes")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF08201D5"
+			width      	458
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TAgendaCandidato" @94
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1360, 896)
+			label      	(object ItemLabel
+			    Parent_View 	@94
+			    location   	(1157, 790)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	406
+			    justify    	0
+			    label      	"TAgendaCandidato")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF12F030A"
+			width      	424
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::TConexao" @95
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(896, 368)
+			label      	(object ItemLabel
+			    Parent_View 	@95
+			    location   	(782, 237)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	228
+			    justify    	0
+			    label      	"TConexao")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3CDDF0090271"
+			width      	246
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$96" @96
+			location   	(611, 281)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"3CAE509901E0"
+			quidu      	"3CDDF1510100"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$91" @169
-				Parent_View 	@168
-				location   	(581, -304)
+			    (object RoleView "$UNNAMED$97" @97
+				Parent_View 	@96
+				location   	(291, -55)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"3CAE5099032A"
-				client     	@168
-				supplier   	@167
-				line_style 	0
-				label      	(object SegLabel @170
-				    Parent_View 	@169
-				    location   	(2214, 606)
+				quidu      	"3CDDF15102E1"
+				client     	@96
+				supplier   	@95
+				line_style 	3
+				origin_attachment 	(611, 281)
+				terminal_attachment 	(773, 281)
+				label      	(object SegLabel @98
+				    Parent_View 	@97
+				    location   	(761, 335)
 				    anchor     	2
 				    anchor_loc 	1
 				    nlines     	1
@@ -3505,18 +3084,20 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	1))
-			    (object RoleView "$UNNAMED$92" @171
-				Parent_View 	@168
-				location   	(581, -304)
+			    (object RoleView "$UNNAMED$98" @99
+				Parent_View 	@96
+				location   	(291, -55)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"3CAE5099032B"
-				client     	@168
-				supplier   	@150
-				line_style 	0
-				label      	(object SegLabel @172
-				    Parent_View 	@171
-				    location   	(1525, 963)
+				quidu      	"3CDDF15102E2"
+				client     	@96
+				supplier   	@89
+				line_style 	3
+				origin_attachment 	(611, 281)
+				terminal_attachment 	(450, 281)
+				label      	(object SegLabel @100
+				    Parent_View 	@99
+				    location   	(461, 335)
 				    anchor     	2
 				    anchor_loc 	1
 				    nlines     	1
@@ -3526,41 +3107,278 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	0))))
-		    (object AssociationViewNew "$UNNAMED$93" @173
-			location   	(2433, 774)
-			stereotype 	(object SegLabel @174
-			    Parent_View 	@173
-			    location   	(2559, 799)
-			    anchor     	10
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"<<extend>>"
-			    pctDist    	2.616667
-			    height     	25
-			    orientation 	1)
+		    (object AssociationViewNew "$UNNAMED$99" @101
+			location   	(1384, 294)
+			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"3CAE517E0208"
+			quidu      	"3CDDF1AC035A"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$94" @175
-				Parent_View 	@173
-				location   	(1, -394)
+			    (object RoleView "$UNNAMED$100" @102
+				Parent_View 	@101
+				location   	(552, -42)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"3CAE517E0320"
-				client     	@173
-				supplier   	@167
-				line_style 	0)
-			    (object RoleView "$UNNAMED$95" @176
-				Parent_View 	@173
-				location   	(1, -394)
+				quidu      	"3CDDF1AD01A3"
+				client     	@101
+				supplier   	@90
+				line_style 	3
+				origin_attachment 	(1384, 294)
+				terminal_attachment 	(1749, 294)
+				label      	(object SegLabel @103
+				    Parent_View 	@102
+				    location   	(1705, 348)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))
+			    (object RoleView "$UNNAMED$101" @104
+				Parent_View 	@101
+				location   	(552, -42)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"3CAE517E0321"
-				client     	@173
-				supplier   	@161
-				line_style 	0)))))))
+				quidu      	"3CDDF1AD01A4"
+				client     	@101
+				supplier   	@95
+				line_style 	3
+				origin_attachment 	(1384, 294)
+				terminal_attachment 	(1019, 294)
+				label      	(object SegLabel @105
+				    Parent_View 	@104
+				    location   	(1063, 348)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))))
+		    (object AssociationViewNew "$UNNAMED$102" @106
+			location   	(906, 644)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF1AF03E0"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$103" @107
+				Parent_View 	@106
+				location   	(74, 308)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B00215"
+				client     	@106
+				supplier   	@91
+				line_style 	3
+				origin_attachment 	(906, 644)
+				terminal_attachment 	(906, 778)
+				label      	(object SegLabel @108
+				    Parent_View 	@107
+				    location   	(960, 738)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$104" @109
+				Parent_View 	@106
+				location   	(74, 308)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B00216"
+				client     	@106
+				supplier   	@95
+				line_style 	3
+				origin_attachment 	(906, 644)
+				terminal_attachment 	(906, 511)
+				label      	(object SegLabel @110
+				    Parent_View 	@109
+				    location   	(960, 551)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))
+		    (object AssociationViewNew "$UNNAMED$105" @111
+			location   	(1506, 444)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF1B201A0"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$106" @112
+				Parent_View 	@111
+				location   	(674, 108)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B20362"
+				client     	@111
+				supplier   	@92
+				vertices   	(list Points
+				    (1506, 444)
+				    (1700, 444)
+				    (1700, 737))
+				line_style 	3
+				origin_attachment 	(1506, 444)
+				terminal_attachment 	(1700, 737)
+				label      	(object SegLabel @113
+				    Parent_View 	@112
+				    location   	(1754, 682)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$107" @114
+				Parent_View 	@111
+				location   	(674, 108)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B2036C"
+				client     	@111
+				supplier   	@95
+				line_style 	3
+				origin_attachment 	(1506, 444)
+				terminal_attachment 	(1019, 444)
+				label      	(object SegLabel @115
+				    Parent_View 	@114
+				    location   	(1073, 498)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))))
+		    (object AssociationViewNew "$UNNAMED$108" @116
+			location   	(604, 491)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF1B40148"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$109" @117
+				Parent_View 	@116
+				location   	(-228, 155)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B402D9"
+				client     	@116
+				supplier   	@93
+				vertices   	(list Points
+				    (604, 491)
+				    (544, 491)
+				    (544, 639))
+				line_style 	3
+				origin_attachment 	(604, 491)
+				terminal_attachment 	(544, 639)
+				label      	(object SegLabel @118
+				    Parent_View 	@117
+				    location   	(598, 626)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$110" @119
+				Parent_View 	@116
+				location   	(-228, 155)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B402E3"
+				client     	@116
+				supplier   	@95
+				line_style 	3
+				origin_attachment 	(604, 491)
+				terminal_attachment 	(773, 491)
+				label      	(object SegLabel @120
+				    Parent_View 	@119
+				    location   	(747, 545)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))
+		    (object AssociationViewNew "$UNNAMED$111" @121
+			location   	(1256, 570)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3CDDF1B600E7"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$112" @122
+				Parent_View 	@121
+				location   	(424, 234)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B70085"
+				client     	@121
+				supplier   	@94
+				line_style 	3
+				origin_attachment 	(1256, 570)
+				terminal_attachment 	(1256, 778)
+				label      	(object SegLabel @123
+				    Parent_View 	@122
+				    location   	(1310, 753)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$113" @124
+				Parent_View 	@121
+				location   	(424, 234)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3CDDF1B7008F"
+				client     	@121
+				supplier   	@95
+				vertices   	(list Points
+				    (1256, 570)
+				    (1256, 510)
+				    (1019, 510))
+				line_style 	3
+				origin_attachment 	(1256, 570)
+				terminal_attachment 	(1019, 510)
+				label      	(object SegLabel @125
+				    Parent_View 	@124
+				    location   	(1044, 457)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"3C86D31702D3"
 	exportControl 	"Public"
@@ -3590,7 +3408,667 @@
 		stereotype 	"business use-case realization")
 	    (object UseCase "Manter Questões"
 		quid       	"3C952F670269"
-		stereotype 	"business use-case realization")
+		stereotype 	"business use-case realization"
+		logical_models 	(list unit_reference_list
+		    (object Mechanism @126
+			logical_models 	(list unit_reference_list
+			    (object Object "$UNNAMED$145"
+				quid       	"3CEC22E700D5"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"3CEC2353021B"
+					supplier   	"$UNNAMED$146"
+					quidu      	"3CEC22F00178"
+					messages   	(list Messages
+					    (object Message "seleciona_disciplina( )"
+						quid       	"3CEC23530225"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"1"
+						ordinal    	0
+						quidu      	"3CDDF0940022")
+					    (object Message "nova_questao( )"
+						quid       	"3CEC23B0005C"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"2"
+						ordinal    	3
+						quidu      	"3CDDF0CD0287")
+					    (object Message "atualiza_questao( )"
+						quid       	"3CEC23EB03C8"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"3"
+						ordinal    	6
+						quidu      	"3CDDF0AE037D")
+					    (object Message "traz_questao( )"
+						quid       	"3CEC241A0113"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"4"
+						ordinal    	9
+						quidu      	"3CDDF09C016E"))))
+				class      	"Use Case View::Professor"
+				quidu      	"3C86D41F0340"
+				persistence 	"Transient"
+				multi      	FALSE)
+			    (object Object "$UNNAMED$146"
+				quid       	"3CEC22F00178"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"3CEC237D03A2"
+					supplier   	"$UNNAMED$147"
+					quidu      	"3CEC22F901CB"
+					messages   	(list Messages
+					    (object Message "open( )"
+						quid       	"3CEC237D03A3"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"1.1"
+						ordinal    	1
+						quidu      	"3CDDF01D0338")))
+				    (object Link
+					quid       	"3CEC23C7022C"
+					supplier   	"$UNNAMED$148"
+					quidu      	"3CEC2329029D"
+					messages   	(list Messages
+					    (object Message "setQuestao( )"
+						quid       	"3CEC23C7022D"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"2.1"
+						ordinal    	4
+						quidu      	"3C92936B00D2")
+					    (object Message "setQuestao( )"
+						quid       	"3CEC23F70217"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"3.1"
+						ordinal    	7
+						quidu      	"3C92936B00D2")
+					    (object Message "getQuestao( )"
+						quid       	"3CEC242B037A"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"4.1"
+						ordinal    	10
+						quidu      	"3C92937201CC"))))
+				class      	"Use Case View::TCadastro_Questoes"
+				quidu      	"3CDDF08201D5"
+				persistence 	"Transient"
+				multi      	FALSE)
+			    (object Object "$UNNAMED$147"
+				quid       	"3CEC22F901CB"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"3CEC23850172"
+					supplier   	"$UNNAMED$149"
+					quidu      	"3CEC233600E3"
+					messages   	(list Messages
+					    (object Message "Open( )"
+						quid       	"3CEC23850173"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"1.1.1"
+						ordinal    	2
+						quidu      	"3CDDF30B01A6"))))
+				class      	"Use Case View::TConexao"
+				quidu      	"3CDDF0090271"
+				persistence 	"Transient"
+				multi      	FALSE)
+			    (object Object "$UNNAMED$148"
+				quid       	"3CEC2329029D"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"3CEC23DC01AA"
+					supplier   	"$UNNAMED$149"
+					quidu      	"3CEC233600E3"
+					messages   	(list Messages
+					    (object Message "Execute( )"
+						quid       	"3CEC23DC01AB"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"2.1.1"
+						ordinal    	5
+						quidu      	"3CDDF3120001")
+					    (object Message "Execute( )"
+						quid       	"3CEC24060056"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"3.1.1"
+						ordinal    	8
+						quidu      	"3CDDF3120001")
+					    (object Message "Open( )"
+						quid       	"3CEC243C01F8"
+						frequency  	"Aperiodic"
+						synchronization 	"Simple"
+						dir        	"FromClientToSupplier"
+						sequence   	"4.1.1"
+						ordinal    	11
+						quidu      	"3CDDF30B01A6"))))
+				class      	"Use Case View::TQuestao"
+				quidu      	"3C929268012C"
+				persistence 	"Transient"
+				multi      	FALSE)
+			    (object Object "$UNNAMED$149"
+				quid       	"3CEC233600E3"
+				class      	"Use Case View::TAcesso"
+				quidu      	"3CDDF2F50321"
+				persistence 	"Transient"
+				multi      	FALSE))))
+		logical_presentations 	(list unit_reference_list
+		    (object InteractionDiagram "CadastrarQuestoes"
+			mechanism_ref 	@126
+			quid       	"3CEC22A100AC"
+			title      	"CadastrarQuestoes"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	294
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object InterObjView "$UNNAMED$145" @127
+				location   	(224, 224)
+				font       	(object Font
+				    underline  	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@127
+				    location   	(224, 237)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	324
+				    justify    	0
+				    label      	"")
+				icon       	"Actor"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3CEC22E700D5"
+				width      	336
+				height     	1865
+				icon_height 	162
+				icon_width 	120
+				icon_y_offset 	12
+				annotation 	1
+				Focus_Of_Control 	(object Focus_Of_Control "" @128
+				    location   	(224, 416)
+				    line_color 	3342489
+				    InterObjView 	@127
+				    height     	320
+				    y_coord    	260
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @129
+				    location   	(224, 816)
+				    line_color 	3342489
+				    InterObjView 	@127
+				    height     	320
+				    y_coord    	260
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @130
+				    location   	(224, 1232)
+				    line_color 	3342489
+				    InterObjView 	@127
+				    height     	336
+				    y_coord    	276
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @131
+				    location   	(224, 1664)
+				    line_color 	3342489
+				    InterObjView 	@127
+				    height     	336
+				    y_coord    	276
+				    Nested     	FALSE))
+			    (object InterObjView "$UNNAMED$146" @132
+				location   	(640, 224)
+				font       	(object Font
+				    underline  	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@132
+				    location   	(640, 224)
+				    fill_color 	13434879
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	394
+				    justify    	0
+				    label      	"")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3CEC22F00178"
+				width      	412
+				height     	1865
+				icon_height 	0
+				icon_width 	0
+				icon_y_offset 	0
+				annotation 	1
+				Focus_Of_Control 	(object Focus_Of_Control "" @133
+				    location   	(640, 416)
+				    line_color 	3342489
+				    InterObjView 	@132
+				    height     	260
+				    y_coord    	200
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @134
+				    location   	(640, 816)
+				    line_color 	3342489
+				    InterObjView 	@132
+				    height     	260
+				    y_coord    	200
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @135
+				    location   	(640, 1232)
+				    line_color 	3342489
+				    InterObjView 	@132
+				    height     	276
+				    y_coord    	216
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @136
+				    location   	(640, 1664)
+				    line_color 	3342489
+				    InterObjView 	@132
+				    height     	276
+				    y_coord    	216
+				    Nested     	FALSE))
+			    (object InterObjView "$UNNAMED$147" @137
+				location   	(1104, 224)
+				font       	(object Font
+				    underline  	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@137
+				    location   	(1104, 224)
+				    fill_color 	13434879
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	282
+				    justify    	0
+				    label      	"")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3CEC22F901CB"
+				width      	300
+				height     	1865
+				icon_height 	0
+				icon_width 	0
+				icon_y_offset 	0
+				annotation 	1
+				Focus_Of_Control 	(object Focus_Of_Control "" @138
+				    location   	(1104, 448)
+				    line_color 	3342489
+				    InterObjView 	@137
+				    height     	168
+				    y_coord    	108
+				    Nested     	FALSE))
+			    (object InterObjView "$UNNAMED$148" @139
+				location   	(1552, 224)
+				font       	(object Font
+				    underline  	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@139
+				    location   	(1552, 224)
+				    fill_color 	13434879
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	282
+				    justify    	0
+				    label      	"")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3CEC2329029D"
+				width      	300
+				height     	1865
+				icon_height 	0
+				icon_width 	0
+				icon_y_offset 	0
+				annotation 	1
+				Focus_Of_Control 	(object Focus_Of_Control "" @140
+				    location   	(1552, 848)
+				    line_color 	3342489
+				    InterObjView 	@139
+				    height     	168
+				    y_coord    	108
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @141
+				    location   	(1552, 1280)
+				    line_color 	3342489
+				    InterObjView 	@139
+				    height     	168
+				    y_coord    	108
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @142
+				    location   	(1552, 1712)
+				    line_color 	3342489
+				    InterObjView 	@139
+				    height     	168
+				    y_coord    	108
+				    Nested     	FALSE))
+			    (object InterObjView "$UNNAMED$149" @143
+				location   	(2064, 224)
+				font       	(object Font
+				    underline  	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@143
+				    location   	(2064, 224)
+				    fill_color 	13434879
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	282
+				    justify    	0
+				    label      	"")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"3CEC233600E3"
+				width      	300
+				height     	1865
+				icon_height 	0
+				icon_width 	0
+				icon_y_offset 	0
+				annotation 	1
+				Focus_Of_Control 	(object Focus_Of_Control "" @144
+				    location   	(2064, 496)
+				    line_color 	3342489
+				    InterObjView 	@143
+				    height     	60
+				    y_coord    	0
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @145
+				    location   	(2064, 896)
+				    line_color 	3342489
+				    InterObjView 	@143
+				    height     	60
+				    y_coord    	0
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @146
+				    location   	(2064, 1328)
+				    line_color 	3342489
+				    InterObjView 	@143
+				    height     	60
+				    y_coord    	0
+				    Nested     	FALSE)
+				Focus_Of_Control 	(object Focus_Of_Control "" @147
+				    location   	(2064, 1760)
+				    line_color 	3342489
+				    InterObjView 	@143
+				    height     	60
+				    y_coord    	0
+				    Nested     	FALSE))
+			    (object InterMessView "" @148
+				location   	(16, 416)
+				label      	(object SegLabel @149
+				    Parent_View 	@148
+				    location   	(431, 372)
+				    quidu      	"3CEC23530225"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	391
+				    justify    	0
+				    label      	"seleciona_disciplina( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@127
+				supplier   	@132
+				Focus_Src  	@128
+				Focus_Entry 	@133
+				origin     	(239, 416)
+				terminus   	(624, 416)
+				ordinal    	0)
+			    (object InterMessView "" @150
+				location   	(16, 448)
+				label      	(object SegLabel @151
+				    Parent_View 	@150
+				    location   	(871, 404)
+				    quidu      	"3CEC237D03A3"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	125
+				    justify    	0
+				    label      	"open( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@132
+				supplier   	@137
+				Focus_Src  	@133
+				Focus_Entry 	@138
+				origin     	(655, 448)
+				terminus   	(1088, 448)
+				ordinal    	1)
+			    (object InterMessView "" @152
+				location   	(16, 496)
+				label      	(object SegLabel @153
+				    Parent_View 	@152
+				    location   	(1632, 455)
+				    quidu      	"3CEC23850173"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	134
+				    justify    	0
+				    label      	"Open( )"
+				    pctDist    	0.553283
+				    height     	42
+				    orientation 	0)
+				line_color 	3342489
+				client     	@137
+				supplier   	@143
+				Focus_Src  	@138
+				Focus_Entry 	@144
+				origin     	(1119, 496)
+				terminus   	(2048, 496)
+				ordinal    	2)
+			    (object InterMessView "" @154
+				location   	(16, 816)
+				label      	(object SegLabel @155
+				    Parent_View 	@154
+				    location   	(431, 772)
+				    quidu      	"3CEC23B0005C"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	284
+				    justify    	0
+				    label      	"nova_questao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@127
+				supplier   	@132
+				Focus_Src  	@129
+				Focus_Entry 	@134
+				origin     	(239, 816)
+				terminus   	(624, 816)
+				ordinal    	3)
+			    (object InterMessView "" @156
+				location   	(16, 848)
+				label      	(object SegLabel @157
+				    Parent_View 	@156
+				    location   	(1095, 804)
+				    quidu      	"3CEC23C7022D"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	247
+				    justify    	0
+				    label      	"setQuestao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@132
+				supplier   	@139
+				Focus_Src  	@134
+				Focus_Entry 	@140
+				origin     	(655, 848)
+				terminus   	(1536, 848)
+				ordinal    	4)
+			    (object InterMessView "" @158
+				location   	(16, 896)
+				label      	(object SegLabel @159
+				    Parent_View 	@158
+				    location   	(1807, 852)
+				    quidu      	"3CEC23DC01AB"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	188
+				    justify    	0
+				    label      	"Execute( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@139
+				supplier   	@143
+				Focus_Src  	@140
+				Focus_Entry 	@145
+				origin     	(1567, 896)
+				terminus   	(2048, 896)
+				ordinal    	5)
+			    (object InterMessView "" @160
+				location   	(16, 1232)
+				label      	(object SegLabel @161
+				    Parent_View 	@160
+				    location   	(431, 1188)
+				    quidu      	"3CEC23EB03C8"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	344
+				    justify    	0
+				    label      	"atualiza_questao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@127
+				supplier   	@132
+				Focus_Src  	@130
+				Focus_Entry 	@135
+				origin     	(239, 1232)
+				terminus   	(624, 1232)
+				ordinal    	6)
+			    (object InterMessView "" @162
+				location   	(16, 1280)
+				label      	(object SegLabel @163
+				    Parent_View 	@162
+				    location   	(1095, 1236)
+				    quidu      	"3CEC23F70217"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	247
+				    justify    	0
+				    label      	"setQuestao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@132
+				supplier   	@139
+				Focus_Src  	@135
+				Focus_Entry 	@141
+				origin     	(655, 1280)
+				terminus   	(1536, 1280)
+				ordinal    	7)
+			    (object InterMessView "" @164
+				location   	(16, 1328)
+				label      	(object SegLabel @165
+				    Parent_View 	@164
+				    location   	(1807, 1284)
+				    quidu      	"3CEC24060056"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	188
+				    justify    	0
+				    label      	"Execute( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@139
+				supplier   	@143
+				Focus_Src  	@141
+				Focus_Entry 	@146
+				origin     	(1567, 1328)
+				terminus   	(2048, 1328)
+				ordinal    	8)
+			    (object InterMessView "" @166
+				location   	(16, 1664)
+				label      	(object SegLabel @167
+				    Parent_View 	@166
+				    location   	(431, 1620)
+				    quidu      	"3CEC241A0113"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	272
+				    justify    	0
+				    label      	"traz_questao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@127
+				supplier   	@132
+				Focus_Src  	@131
+				Focus_Entry 	@136
+				origin     	(239, 1664)
+				terminus   	(624, 1664)
+				ordinal    	9)
+			    (object InterMessView "" @168
+				location   	(16, 1712)
+				label      	(object SegLabel @169
+				    Parent_View 	@168
+				    location   	(1095, 1668)
+				    quidu      	"3CEC242B037A"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	247
+				    justify    	0
+				    label      	"getQuestao( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@132
+				supplier   	@139
+				Focus_Src  	@136
+				Focus_Entry 	@142
+				origin     	(655, 1712)
+				terminus   	(1536, 1712)
+				ordinal    	10)
+			    (object InterMessView "" @170
+				location   	(16, 1760)
+				label      	(object SegLabel @171
+				    Parent_View 	@170
+				    location   	(1807, 1716)
+				    quidu      	"3CEC243C01F8"
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	134
+				    justify    	0
+				    label      	"Open( )"
+				    pctDist    	0.500000
+				    height     	45
+				    orientation 	0)
+				line_color 	3342489
+				client     	@139
+				supplier   	@143
+				Focus_Src  	@142
+				Focus_Entry 	@147
+				origin     	(1567, 1760)
+				terminus   	(2048, 1760)
+				ordinal    	11)))))
 	    (object UseCase "Manter Usuário"
 		quid       	"3C95304B03C6"
 		stereotype 	"business use-case realization")
@@ -3600,146 +4078,146 @@
 	    (object UseCase "Configurar Avaliação"
 		quid       	"3C95309900B1"
 		stereotype 	"business use-case realization")
-	    (object Association "$UNNAMED$100"
+	    (object Association "$UNNAMED$150"
 		quid       	"3C951A120100"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$101"
+		    (object Role "$UNNAMED$151"
 			quid       	"3C951A1202D7"
-			supplier   	"Use Case View::Agendar Candidato"
+			supplier   	"Use Case View::Agendar Prova"
 			quidu      	"3C8C2EE9025D"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$102"
+		    (object Role "$UNNAMED$152"
 			quid       	"3C951A1202D8"
 			supplier   	"Logical View::AgendaCandidato"
 			quidu      	"3C95197501C3")))
-	    (object Association "$UNNAMED$103"
+	    (object Association "$UNNAMED$153"
 		quid       	"3C952BC40335"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$104"
+		    (object Role "$UNNAMED$154"
 			quid       	"3C952BC500AC"
 			supplier   	"Logical View::AgendaCandidato"
 			quidu      	"3C95197501C3"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$105"
+		    (object Role "$UNNAMED$155"
 			quid       	"3C952BC500AD"
-			supplier   	"Use Case View::Agendar Candidato"
+			supplier   	"Use Case View::Agendar Prova"
 			quidu      	"3C8C2EE9025D")))
-	    (object Association "$UNNAMED$106"
+	    (object Association "$UNNAMED$156"
 		quid       	"3C952BC602DE"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$107"
+		    (object Role "$UNNAMED$157"
 			quid       	"3C952BC700A5"
 			supplier   	"Logical View::Efetuar prova"
 			quidu      	"3C952BAD03AA"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$108"
+		    (object Role "$UNNAMED$158"
 			quid       	"3C952BC700A6"
 			supplier   	"Use Case View::Efetuar prova"
 			quidu      	"3C86D63000DE")))
-	    (object Association "$UNNAMED$109"
+	    (object Association "$UNNAMED$159"
 		quid       	"3C952BF702B6"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$110"
+		    (object Role "$UNNAMED$160"
 			quid       	"3C952BF80023"
 			supplier   	"Logical View::Manter Area"
 			quidu      	"3C952BE501FC"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$111"
+		    (object Role "$UNNAMED$161"
 			quid       	"3C952BF80024"
-			supplier   	"Use Case View::Manter Area"
+			supplier   	"Use Case View::  Cadastrar Area"
 			quidu      	"3C8C2F1400EC")))
-	    (object Association "$UNNAMED$112"
+	    (object Association "$UNNAMED$162"
 		quid       	"3C952C5A0132"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$113"
+		    (object Role "$UNNAMED$163"
 			quid       	"3C952C5A029B"
 			supplier   	"Logical View::Manter Curso"
 			quidu      	"3C952C4802BD"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$114"
+		    (object Role "$UNNAMED$164"
 			quid       	"3C952C5A029C"
-			supplier   	"Use Case View::Manter Curso"
+			supplier   	"Use Case View::Cadastrar Curso"
 			quidu      	"3C8C2EF301F3")))
-	    (object Association "$UNNAMED$115"
+	    (object Association "$UNNAMED$165"
 		quid       	"3C952CF8022A"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$116"
+		    (object Role "$UNNAMED$166"
 			quid       	"3C952CFA0038"
 			supplier   	"Logical View::Manter Salas e Horarios"
 			quidu      	"3C952C9C02C8"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$117"
+		    (object Role "$UNNAMED$167"
 			quid       	"3C952CFA0039"
 			supplier   	"Use Case View::Cadastrar Locais e horarios disponiveis"
 			quidu      	"3C8C2F4002E4")))
-	    (object Association "$UNNAMED$118"
+	    (object Association "$UNNAMED$168"
 		quid       	"3C952D1A0189"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$119"
+		    (object Role "$UNNAMED$169"
 			quid       	"3C952D1A0387"
 			supplier   	"Logical View::Manter Disciplina"
 			quidu      	"3C952D0D00A3"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$120"
+		    (object Role "$UNNAMED$170"
 			quid       	"3C952D1A0388"
-			supplier   	"Use Case View::Manter Disciplina"
+			supplier   	"Use Case View::Cadastrar Disciplina"
 			quidu      	"3C8C2EBE00CB")))
-	    (object Association "$UNNAMED$121"
+	    (object Association "$UNNAMED$171"
 		quid       	"3C952F78030E"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$122"
+		    (object Role "$UNNAMED$172"
 			quid       	"3C952F7900FD"
 			supplier   	"Logical View::Manter Questões"
 			quidu      	"3C952F670269"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$123"
+		    (object Role "$UNNAMED$173"
 			quid       	"3C952F7900FE"
-			supplier   	"Use Case View::Manter Questões"
+			supplier   	"Use Case View::Cadastrar Questões"
 			quidu      	"3C8C2F81037E")))
-	    (object Association "$UNNAMED$124"
+	    (object Association "$UNNAMED$174"
 		quid       	"3C953064019B"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$125"
+		    (object Role "$UNNAMED$175"
 			quid       	"3C9530650084"
 			supplier   	"Logical View::Manter Usuário"
 			quidu      	"3C95304B03C6"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$126"
+		    (object Role "$UNNAMED$176"
 			quid       	"3C953065008E"
-			supplier   	"Use Case View::Manter Usuário"
+			supplier   	"Use Case View::Cadastrar Usuário"
 			quidu      	"3C8C2ECA01D6")))
-	    (object Association "$UNNAMED$127"
+	    (object Association "$UNNAMED$177"
 		quid       	"3C9530920039"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$128"
+		    (object Role "$UNNAMED$178"
 			quid       	"3C9530920350"
 			supplier   	"Logical View::Administrar Processo Seletivo"
 			quidu      	"3C9530810052"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$129"
+		    (object Role "$UNNAMED$179"
 			quid       	"3C9530920351"
 			supplier   	"Use Case View::Administrar Processo Seletivo"
 			quidu      	"3C8C2F2A02CF")))
-	    (object Association "$UNNAMED$130"
+	    (object Association "$UNNAMED$180"
 		quid       	"3C9530A502DF"
 		stereotype 	"realize"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$131"
+		    (object Role "$UNNAMED$181"
 			quid       	"3C9530A600F6"
 			supplier   	"Logical View::Configurar Avaliação"
 			quidu      	"3C95309900B1"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$132"
+		    (object Role "$UNNAMED$182"
 			quid       	"3C9530A600F7"
 			supplier   	"Use Case View::Configurar Avaliação"
 			quidu      	"3C8C2F1E0119"))))
@@ -3762,10 +4240,10 @@
 		origin_x   	147
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object UseCaseView "Logical View::AgendaCandidato" @177
+		    (object UseCaseView "Logical View::AgendaCandidato" @172
 			location   	(2032, 192)
 			label      	(object ItemLabel
-			    Parent_View 	@177
+			    Parent_View 	@172
 			    location   	(2032, 333)
 			    anchor_loc 	1
 			    nlines     	2
@@ -3777,25 +4255,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C95197501C3")
-		    (object UseCaseView "Use Case View::Agendar Candidato" @178
+		    (object UseCaseView "Use Case View::Agendar Prova" @173
 			location   	(1552, 176)
 			label      	(object ItemLabel
-			    Parent_View 	@178
+			    Parent_View 	@173
 			    location   	(1552, 314)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Agendar Candidato")
+			    label      	"Agendar Prova")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EE9025D"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$103" @179
+		    (object AssociationViewNew "$UNNAMED$153" @174
 			location   	(1789, 181)
-			stereotype 	(object SegLabel @180
-			    Parent_View 	@179
+			stereotype 	(object SegLabel @175
+			    Parent_View 	@174
 			    location   	(1789, 62)
 			    anchor     	10
 			    anchor_loc 	1
@@ -3809,28 +4287,28 @@
 			line_color 	3342489
 			quidu      	"3C952BC40335"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$104" @181
-				Parent_View 	@179
+			    (object RoleView "$UNNAMED$154" @176
+				Parent_View 	@174
 				location   	(173, -43)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BC500AC"
-				client     	@179
-				supplier   	@177
+				client     	@174
+				supplier   	@172
 				line_style 	0)
-			    (object RoleView "$UNNAMED$105" @182
-				Parent_View 	@179
+			    (object RoleView "$UNNAMED$155" @177
+				Parent_View 	@174
 				location   	(173, -43)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BC500AD"
-				client     	@179
-				supplier   	@178
+				client     	@174
+				supplier   	@173
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Efetuar prova" @183
+		    (object UseCaseView "Logical View::Efetuar prova" @178
 			location   	(2000, 544)
 			label      	(object ItemLabel
-			    Parent_View 	@183
+			    Parent_View 	@178
 			    location   	(2000, 685)
 			    anchor_loc 	1
 			    nlines     	2
@@ -3842,10 +4320,10 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952BAD03AA")
-		    (object UseCaseView "Use Case View::Efetuar prova" @184
+		    (object UseCaseView "Use Case View::Efetuar prova" @179
 			location   	(1504, 544)
 			label      	(object ItemLabel
-			    Parent_View 	@184
+			    Parent_View 	@179
 			    location   	(1504, 682)
 			    anchor_loc 	1
 			    nlines     	2
@@ -3857,10 +4335,10 @@
 			fill_color 	13434879
 			quidu      	"3C86D63000DE"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$106" @185
+		    (object AssociationViewNew "$UNNAMED$156" @180
 			location   	(1749, 544)
-			stereotype 	(object SegLabel @186
-			    Parent_View 	@185
+			stereotype 	(object SegLabel @181
+			    Parent_View 	@180
 			    location   	(1749, 425)
 			    anchor     	10
 			    anchor_loc 	1
@@ -3874,28 +4352,28 @@
 			line_color 	3342489
 			quidu      	"3C952BC602DE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$107" @187
-				Parent_View 	@185
+			    (object RoleView "$UNNAMED$157" @182
+				Parent_View 	@180
 				location   	(229, -48)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BC700A5"
-				client     	@185
-				supplier   	@183
+				client     	@180
+				supplier   	@178
 				line_style 	0)
-			    (object RoleView "$UNNAMED$108" @188
-				Parent_View 	@185
+			    (object RoleView "$UNNAMED$158" @183
+				Parent_View 	@180
 				location   	(229, -48)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BC700A6"
-				client     	@185
-				supplier   	@184
+				client     	@180
+				supplier   	@179
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Area" @189
+		    (object UseCaseView "Logical View::Manter Area" @184
 			location   	(1936, 832)
 			label      	(object ItemLabel
-			    Parent_View 	@189
+			    Parent_View 	@184
 			    location   	(1936, 973)
 			    anchor_loc 	1
 			    nlines     	2
@@ -3907,25 +4385,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952BE501FC")
-		    (object UseCaseView "Use Case View::Manter Area" @190
+		    (object UseCaseView "Use Case View::  Cadastrar Area" @185
 			location   	(1520, 832)
 			label      	(object ItemLabel
-			    Parent_View 	@190
+			    Parent_View 	@185
 			    location   	(1520, 970)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Area")
+			    label      	"  Cadastrar Area")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2F1400EC"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$109" @191
+		    (object AssociationViewNew "$UNNAMED$159" @186
 			location   	(1725, 832)
-			stereotype 	(object SegLabel @192
-			    Parent_View 	@191
+			stereotype 	(object SegLabel @187
+			    Parent_View 	@186
 			    location   	(1725, 713)
 			    anchor     	10
 			    anchor_loc 	1
@@ -3939,28 +4417,28 @@
 			line_color 	3342489
 			quidu      	"3C952BF702B6"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$110" @193
-				Parent_View 	@191
+			    (object RoleView "$UNNAMED$160" @188
+				Parent_View 	@186
 				location   	(205, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BF80023"
-				client     	@191
-				supplier   	@189
+				client     	@186
+				supplier   	@184
 				line_style 	0)
-			    (object RoleView "$UNNAMED$111" @194
-				Parent_View 	@191
+			    (object RoleView "$UNNAMED$161" @189
+				Parent_View 	@186
 				location   	(205, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952BF80024"
-				client     	@191
-				supplier   	@190
+				client     	@186
+				supplier   	@185
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Curso" @195
+		    (object UseCaseView "Logical View::Manter Curso" @190
 			location   	(1984, 1184)
 			label      	(object ItemLabel
-			    Parent_View 	@195
+			    Parent_View 	@190
 			    location   	(1984, 1325)
 			    anchor_loc 	1
 			    nlines     	2
@@ -3972,25 +4450,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952C4802BD")
-		    (object UseCaseView "Use Case View::Manter Curso" @196
+		    (object UseCaseView "Use Case View::Cadastrar Curso" @191
 			location   	(1552, 1200)
 			label      	(object ItemLabel
-			    Parent_View 	@196
+			    Parent_View 	@191
 			    location   	(1552, 1338)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Curso")
+			    label      	"Cadastrar Curso")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EF301F3"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$112" @197
+		    (object AssociationViewNew "$UNNAMED$162" @192
 			location   	(1765, 1190)
-			stereotype 	(object SegLabel @198
-			    Parent_View 	@197
+			stereotype 	(object SegLabel @193
+			    Parent_View 	@192
 			    location   	(1765, 1071)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4004,28 +4482,28 @@
 			line_color 	3342489
 			quidu      	"3C952C5A0132"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$113" @199
-				Parent_View 	@197
+			    (object RoleView "$UNNAMED$163" @194
+				Parent_View 	@192
 				location   	(213, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952C5A029B"
-				client     	@197
-				supplier   	@195
+				client     	@192
+				supplier   	@190
 				line_style 	0)
-			    (object RoleView "$UNNAMED$114" @200
-				Parent_View 	@197
+			    (object RoleView "$UNNAMED$164" @195
+				Parent_View 	@192
 				location   	(213, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952C5A029C"
-				client     	@197
-				supplier   	@196
+				client     	@192
+				supplier   	@191
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Salas e Horarios" @201
+		    (object UseCaseView "Logical View::Manter Salas e Horarios" @196
 			location   	(2000, 1536)
 			label      	(object ItemLabel
-			    Parent_View 	@201
+			    Parent_View 	@196
 			    location   	(2000, 1677)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4037,10 +4515,10 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952C9C02C8")
-		    (object UseCaseView "Use Case View::Cadastrar Locais e horarios disponiveis" @202
+		    (object UseCaseView "Use Case View::Cadastrar Locais e horarios disponiveis" @197
 			location   	(1520, 1536)
 			label      	(object ItemLabel
-			    Parent_View 	@202
+			    Parent_View 	@197
 			    location   	(1520, 1674)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4052,10 +4530,10 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F4002E4"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$115" @203
+		    (object AssociationViewNew "$UNNAMED$165" @198
 			location   	(1757, 1536)
-			stereotype 	(object SegLabel @204
-			    Parent_View 	@203
+			stereotype 	(object SegLabel @199
+			    Parent_View 	@198
 			    location   	(1757, 1417)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4069,28 +4547,28 @@
 			line_color 	3342489
 			quidu      	"3C952CF8022A"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$116" @205
-				Parent_View 	@203
+			    (object RoleView "$UNNAMED$166" @200
+				Parent_View 	@198
 				location   	(237, -32)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952CFA0038"
-				client     	@203
-				supplier   	@201
+				client     	@198
+				supplier   	@196
 				line_style 	0)
-			    (object RoleView "$UNNAMED$117" @206
-				Parent_View 	@203
+			    (object RoleView "$UNNAMED$167" @201
+				Parent_View 	@198
 				location   	(237, -32)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952CFA0039"
-				client     	@203
-				supplier   	@202
+				client     	@198
+				supplier   	@197
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Disciplina" @207
+		    (object UseCaseView "Logical View::Manter Disciplina" @202
 			location   	(960, 208)
 			label      	(object ItemLabel
-			    Parent_View 	@207
+			    Parent_View 	@202
 			    location   	(960, 349)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4102,25 +4580,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952D0D00A3")
-		    (object UseCaseView "Use Case View::Manter Disciplina" @208
+		    (object UseCaseView "Use Case View::Cadastrar Disciplina" @203
 			location   	(464, 208)
 			label      	(object ItemLabel
-			    Parent_View 	@208
+			    Parent_View 	@203
 			    location   	(464, 346)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Disciplina")
+			    label      	"Cadastrar Disciplina")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2EBE00CB"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$118" @209
+		    (object AssociationViewNew "$UNNAMED$168" @204
 			location   	(709, 208)
-			stereotype 	(object SegLabel @210
-			    Parent_View 	@209
+			stereotype 	(object SegLabel @205
+			    Parent_View 	@204
 			    location   	(709, 89)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4134,28 +4612,28 @@
 			line_color 	3342489
 			quidu      	"3C952D1A0189"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$119" @211
-				Parent_View 	@209
+			    (object RoleView "$UNNAMED$169" @206
+				Parent_View 	@204
 				location   	(245, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952D1A0387"
-				client     	@209
-				supplier   	@207
+				client     	@204
+				supplier   	@202
 				line_style 	0)
-			    (object RoleView "$UNNAMED$120" @212
-				Parent_View 	@209
+			    (object RoleView "$UNNAMED$170" @207
+				Parent_View 	@204
 				location   	(245, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952D1A0388"
-				client     	@209
-				supplier   	@208
+				client     	@204
+				supplier   	@203
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Questões" @213
+		    (object UseCaseView "Logical View::Manter Questões" @208
 			location   	(1040, 608)
 			label      	(object ItemLabel
-			    Parent_View 	@213
+			    Parent_View 	@208
 			    location   	(1040, 749)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4167,25 +4645,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C952F670269")
-		    (object UseCaseView "Use Case View::Manter Questões" @214
+		    (object UseCaseView "Use Case View::Cadastrar Questões" @209
 			location   	(464, 592)
 			label      	(object ItemLabel
-			    Parent_View 	@214
+			    Parent_View 	@209
 			    location   	(464, 730)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Questões")
+			    label      	"Cadastrar Questões")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2F81037E"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$121" @215
+		    (object AssociationViewNew "$UNNAMED$171" @210
 			location   	(749, 597)
-			stereotype 	(object SegLabel @216
-			    Parent_View 	@215
+			stereotype 	(object SegLabel @211
+			    Parent_View 	@210
 			    location   	(749, 478)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4199,28 +4677,28 @@
 			line_color 	3342489
 			quidu      	"3C952F78030E"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$122" @217
-				Parent_View 	@215
+			    (object RoleView "$UNNAMED$172" @212
+				Parent_View 	@210
 				location   	(349, 37)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952F7900FD"
-				client     	@215
-				supplier   	@213
+				client     	@210
+				supplier   	@208
 				line_style 	0)
-			    (object RoleView "$UNNAMED$123" @218
-				Parent_View 	@215
+			    (object RoleView "$UNNAMED$173" @213
+				Parent_View 	@210
 				location   	(349, 37)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C952F7900FE"
-				client     	@215
-				supplier   	@214
+				client     	@210
+				supplier   	@209
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Manter Usuário" @219
+		    (object UseCaseView "Logical View::Manter Usuário" @214
 			location   	(1024, 976)
 			label      	(object ItemLabel
-			    Parent_View 	@219
+			    Parent_View 	@214
 			    location   	(1024, 1117)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4232,25 +4710,25 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C95304B03C6")
-		    (object UseCaseView "Use Case View::Manter Usuário" @220
+		    (object UseCaseView "Use Case View::Cadastrar Usuário" @215
 			location   	(512, 992)
 			label      	(object ItemLabel
-			    Parent_View 	@220
+			    Parent_View 	@215
 			    location   	(512, 1130)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Manter Usuário")
+			    label      	"Cadastrar Usuário")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C8C2ECA01D6"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$124" @221
+		    (object AssociationViewNew "$UNNAMED$174" @216
 			location   	(765, 982)
-			stereotype 	(object SegLabel @222
-			    Parent_View 	@221
+			stereotype 	(object SegLabel @217
+			    Parent_View 	@216
 			    location   	(765, 863)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4264,28 +4742,28 @@
 			line_color 	3342489
 			quidu      	"3C953064019B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$125" @223
-				Parent_View 	@221
+			    (object RoleView "$UNNAMED$175" @218
+				Parent_View 	@216
 				location   	(253, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C9530650084"
-				client     	@221
-				supplier   	@219
+				client     	@216
+				supplier   	@214
 				line_style 	0)
-			    (object RoleView "$UNNAMED$126" @224
-				Parent_View 	@221
+			    (object RoleView "$UNNAMED$176" @219
+				Parent_View 	@216
 				location   	(253, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C953065008E"
-				client     	@221
-				supplier   	@220
+				client     	@216
+				supplier   	@215
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Administrar Processo Seletivo" @225
+		    (object UseCaseView "Logical View::Administrar Processo Seletivo" @220
 			location   	(1024, 1328)
 			label      	(object ItemLabel
-			    Parent_View 	@225
+			    Parent_View 	@220
 			    location   	(1024, 1469)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4297,10 +4775,10 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C9530810052")
-		    (object UseCaseView "Use Case View::Administrar Processo Seletivo" @226
+		    (object UseCaseView "Use Case View::Administrar Processo Seletivo" @221
 			location   	(480, 1344)
 			label      	(object ItemLabel
-			    Parent_View 	@226
+			    Parent_View 	@221
 			    location   	(480, 1482)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4312,10 +4790,10 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F2A02CF"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$127" @227
+		    (object AssociationViewNew "$UNNAMED$177" @222
 			location   	(749, 1334)
-			stereotype 	(object SegLabel @228
-			    Parent_View 	@227
+			stereotype 	(object SegLabel @223
+			    Parent_View 	@222
 			    location   	(749, 1215)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4329,28 +4807,28 @@
 			line_color 	3342489
 			quidu      	"3C9530920039"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$128" @229
-				Parent_View 	@227
+			    (object RoleView "$UNNAMED$178" @224
+				Parent_View 	@222
 				location   	(269, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C9530920350"
-				client     	@227
-				supplier   	@225
+				client     	@222
+				supplier   	@220
 				line_style 	0)
-			    (object RoleView "$UNNAMED$129" @230
-				Parent_View 	@227
+			    (object RoleView "$UNNAMED$179" @225
+				Parent_View 	@222
 				location   	(269, -10)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C9530920351"
-				client     	@227
-				supplier   	@226
+				client     	@222
+				supplier   	@221
 				line_style 	0)))
-		    (object UseCaseView "Logical View::Configurar Avaliação" @231
+		    (object UseCaseView "Logical View::Configurar Avaliação" @226
 			location   	(1040, 1664)
 			label      	(object ItemLabel
-			    Parent_View 	@231
+			    Parent_View 	@226
 			    location   	(1040, 1805)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4362,10 +4840,10 @@
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"3C95309900B1")
-		    (object UseCaseView "Use Case View::Configurar Avaliação" @232
+		    (object UseCaseView "Use Case View::Configurar Avaliação" @227
 			location   	(480, 1664)
 			label      	(object ItemLabel
-			    Parent_View 	@232
+			    Parent_View 	@227
 			    location   	(480, 1802)
 			    anchor_loc 	1
 			    nlines     	2
@@ -4377,10 +4855,10 @@
 			fill_color 	13434879
 			quidu      	"3C8C2F1E0119"
 			height     	118)
-		    (object AssociationViewNew "$UNNAMED$130" @233
+		    (object AssociationViewNew "$UNNAMED$180" @228
 			location   	(757, 1664)
-			stereotype 	(object SegLabel @234
-			    Parent_View 	@233
+			stereotype 	(object SegLabel @229
+			    Parent_View 	@228
 			    location   	(757, 1545)
 			    anchor     	10
 			    anchor_loc 	1
@@ -4394,23 +4872,23 @@
 			line_color 	3342489
 			quidu      	"3C9530A502DF"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$131" @235
-				Parent_View 	@233
+			    (object RoleView "$UNNAMED$181" @230
+				Parent_View 	@228
 				location   	(277, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C9530A600F6"
-				client     	@233
-				supplier   	@231
+				client     	@228
+				supplier   	@226
 				line_style 	0)
-			    (object RoleView "$UNNAMED$132" @236
-				Parent_View 	@233
+			    (object RoleView "$UNNAMED$182" @231
+				Parent_View 	@228
 				location   	(277, 0)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"3C9530A600F7"
-				client     	@233
-				supplier   	@232
+				client     	@228
+				supplier   	@227
 				line_style 	0)))))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"3C86D31702D5"
